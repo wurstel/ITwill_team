@@ -30,7 +30,6 @@ public class MemberLoginProAction implements Action {
 		// => 파라미터 : id,pass    리턴타입 : boolean(isMember)
 		MemberLoginProService service = new MemberLoginProService();
 		boolean isMember = service.loginMember(id,pass);
-		System.out.println(isMember);
 		// 로그인 판별 작업 요청 결과에 따른 판별 작업 수행
 		if(!isMember) { // 로그인 실패
 			response.setContentType("text/html; charset=UTF-8");
