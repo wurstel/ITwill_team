@@ -67,13 +67,28 @@ public class MemberDAO {
 	}
 
 	//회원가입여부확인
-	public boolean isMember(MemberDTO dto) {
+	public boolean isMember(String id,String pass) {
 		boolean isMember = false;
 		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
-		
-		
-		
+		try {
+			String sql = "SELECT * FROM member WHERE mem_id=? AND mem_password=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pass);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				isMember = true;
+			}
+		} catch (SQLException e) {
+			System.out.println("Error! isMember");
+//			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
 		return isMember;
 	}
 
