@@ -79,7 +79,10 @@ public class Frontcontroller_me extends HttpServlet {
 				e.printStackTrace();
 			}
     		
-    		
+    	}else if(command.equals("/mem_joinSuccess.me")) {
+    		forward = new ActionForward();
+			forward.setPath("member/mem_joinSuccess.jsp");	
+			forward.setRedirect(true);
     	}else if(command.equals("/mypage.me")) {
     		
     	}

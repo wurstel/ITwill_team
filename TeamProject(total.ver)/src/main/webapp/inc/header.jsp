@@ -39,7 +39,7 @@ float: left
 				<div><a href="login_form.me">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="join_form.me">회원가입</a></div>
 			</c:when>
 			<c:otherwise>
-				<div><a href="">${sId }</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">마이페이지</a></div>
+				<div><a href="">${sId }</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">마이페이지</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="logout.me">로그아웃</a></div>
 			</c:otherwise>
 		</c:choose>
 	</div>

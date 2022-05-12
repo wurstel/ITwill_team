@@ -57,12 +57,25 @@ public class MemberDAO {
 	public int insertMember(MemberDTO memberDTO) {
 		int insertCount = 0;
 		
-		
-		
-		
-		
-		
-		
+		PreparedStatement pstmt = null;
+		try {
+			String sql ="INSERT INTO MEMBER VALUES(?,?,?,?,?,?,?,?,?,'normal','0','null')";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getMem_id());
+			pstmt.setString(2, memberDTO.getMem_password());
+			pstmt.setString(3, memberDTO.getMem_name());
+			pstmt.setString(4, memberDTO.getMem_birth());
+			pstmt.setString(5, memberDTO.getMem_gender());
+			pstmt.setString(6, memberDTO.getMem_email());
+			pstmt.setString(7, memberDTO.getMem_phoneNum());
+			pstmt.setString(8, memberDTO.getMem_postcode());
+			pstmt.setString(9, memberDTO.getMem_address());
+			insertCount=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		return insertCount;
 	}
 

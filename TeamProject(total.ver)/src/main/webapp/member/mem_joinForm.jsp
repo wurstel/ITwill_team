@@ -12,7 +12,7 @@
 <script src="../js/jquery-3.6.0.js"></script>
 </head>
 <body>
-	<form action="mem_join.me" name="fr" id="fr">
+	<form action="mem_join.me" name="fr" id="fr" method="post">
 		<table border="1">
 			<tr>
 				<td>아이디</td>
@@ -21,6 +21,7 @@
 					<input type="button" value="ID중복확인" onclick="checkDuplicateId()">				<!-- 아이디 중복방지 -->
 					<span id="checkIdResult"></span>
 				</td>
+
 			</tr>										
 			<tr><td>비밀번호</td>
 				<td>
@@ -50,8 +51,8 @@
 			</td>
 			</tr>
 			<tr><td>전화번호</td>	<td><input type="text" name="phone" id="phone" onblur="checkPhone(this.value)"></td></tr>				<!-- 0101xxxxxxxx 이런시고 넘어가게 -->
-			<tr><td rowspan="2">주소</td>	<td><input type="text" id="postcode"><input type="button" value="주소검색" onclick="postCodeSearch()"></td></tr>
-			<tr><td><input type="text" id="address"><input type="text" id="add_detail" placeholder="상세주소 입력"></td></tr>
+			<tr><td rowspan="2">주소</td>	<td><input type="text" name="postcode" id="postcode"><input type="button" value="주소검색" onclick="postCodeSearch()"></td></tr>
+			<tr><td><input type="text" name="address" id="address"><input type="text" name="add_detail" id="add_detail" placeholder="상세주소 입력"></td></tr>
 		</table>
 		<input type="submit" value="회원가입">
 <%-- 		<c:if test="">				<!--chaptcha 미입력시 --> --%>
