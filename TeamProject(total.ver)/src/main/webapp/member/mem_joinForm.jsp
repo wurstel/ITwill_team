@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://kit.fontawesome.com/9a9e4a4c63.js" crossorigin="anonymous"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="js/joinFunc.js"></script>
+<script src="../js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<form action="mem_join.me" name="fr" id="fr">
@@ -20,7 +22,16 @@
 					<span id="checkIdResult"></span>
 				</td>
 			</tr>										
-			<tr><td>비밀번호</td>	<td><input type="password" name="pass" id="pass" onkeyup="checkPass(this.value)"> <span id="passResult"></span></td></tr>			<!-- 정규표현식 -->
+			<tr><td>비밀번호</td>
+				<td>
+					<div class="main">
+						<input type="password" name="pass" id="pass" onkeyup="checkPass(this.value)">
+						<i class="fa-solid fa-eye"></i>
+						<span>(아이콘 클릭시 비밀번호 확인가능)</span>
+					</div>
+					<span id="passResult"></span>
+				</td>
+			</tr>
 			<tr><td>이름</td>		<td><input type="text" name="name" id="name"></td></tr>
 			<tr><td>생년월일</td>	<td><input type="date" name="birth" id="birth"></td></tr>
 			<tr><td>성별</td>		<td><input type="radio" value="남" name="gender" id="gender">남<input type="radio" value="여" name="gender" id="gender">여</td></tr>

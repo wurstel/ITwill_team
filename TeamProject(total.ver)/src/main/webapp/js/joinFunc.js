@@ -24,7 +24,7 @@
 			passResult.innerHTML = "사용 가능";
 			passResult.style.color = "GREEN";
 		} else { 
-			passResult.innerHTML = "사용 불가능(8~16자, 대문자, 소문자, 숫자 하나 이상)";
+			passResult.innerHTML = "사용 불가능(숫자, 영문 대문자, 소문자 세가지 조합 8~16자)";
 			passResult.style.color = "RED";
 		}
 	}
@@ -91,6 +91,20 @@
 	        }
 	    }).open();
 	}
+	
+	//password button
+	$(document).ready(function(){
+	    $('.main i').on('click',function(){
+	        $('input').toggleClass('active');
+	        if($('input').hasClass('active')){
+	            $(this).attr('class',"fa-solid fa-eye-slash")
+	            .prev('input').attr('type',"text");
+	        }else{
+	            $(this).attr('class',"fa-solid fa-eye")
+	            .prev('input').attr('type','password');
+	        }
+	    });
+	});
 	
 	
 	
