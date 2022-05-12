@@ -13,6 +13,7 @@ import action.Action;
 import action.MemberCheckIdDuplicateAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
+import action.MemberJoinAction;
 import vo.ActionForward;
 
 @WebServlet("*.me")
@@ -71,6 +72,13 @@ public class Frontcontroller_me extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/mem_join.me")) {
+    		action = new MemberJoinAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    		
     		
     	}else if(command.equals("/mypage.me")) {
     		

@@ -16,7 +16,7 @@ package vo;
 		mem_postcode VARCHAR(6),
 		mem_address	 VARCHAR(300),
 		mem_grade VARCHAR(30),
-		mem_point INT,
+		mem_point VARCHAR(1000),
 		mem_paymethod  VARCHAR(50)
 	);
 
@@ -35,7 +35,7 @@ public class MemberDTO {
 	private String mem_postcode;
 	private String mem_address;
 	private String mem_grade;
-	private int mem_point;
+	private String mem_point;
 	private String mem_paymethod;
 	
 	public String getMem_id() {
@@ -92,17 +92,17 @@ public class MemberDTO {
 	public void setMem_grade(String mem_grade) {
 		this.mem_grade = mem_grade;
 	}
-	public int getMem_point() {
-		return mem_point;
-	}
-	public void setMem_point(int mem_point) {
-		this.mem_point = mem_point;
-	}
 	public String getMem_paymethod() {
 		return mem_paymethod;
 	}
 	public void setMem_paymethod(String mem_paymethod) {
 		this.mem_paymethod = mem_paymethod;
+	}
+	public String getMem_point() {
+		return mem_point;
+	}
+	public void setMem_point(String mem_point) {
+		this.mem_point = mem_point;
 	}
 	public String getMem_postcode() {
 		return mem_postcode;
