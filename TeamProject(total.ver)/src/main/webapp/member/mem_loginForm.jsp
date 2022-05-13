@@ -15,7 +15,7 @@
 				<td><input type="text" name="mem_id" required="required" size="20"></td>
 			</tr>
 			<tr>
-				<td>패스워드</td>
+				<td>패스워드</td>									<!-- 눈모양 아이콘 추가 -->
 				<td><input type="text" name="mem_password" required="required" size="20"></td>
 			</tr>
 			<tr>
