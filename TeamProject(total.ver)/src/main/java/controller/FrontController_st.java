@@ -65,8 +65,7 @@ public class FrontController_st extends HttpServlet {
     	} else if(command.equals("/eventProduct.st")) {
 
     		
-    	} 
-    	
+    	}
     	
     	
     	
