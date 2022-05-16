@@ -84,7 +84,9 @@ public class Frontcontroller_me extends HttpServlet {
 			forward.setPath("member/mem_joinSuccess.jsp");	
 			forward.setRedirect(true);
     	}else if(command.equals("/mypage.me")) {
-    		
+    		forward = new ActionForward();
+    		forward.setPath("mem/mypage.jsp");
+    		forward.setRedirect(false);
     	}
     	
     	
