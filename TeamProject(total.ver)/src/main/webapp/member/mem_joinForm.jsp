@@ -9,7 +9,7 @@
 <script src="https://kit.fontawesome.com/9a9e4a4c63.js" crossorigin="anonymous"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="js/joinFunc.js"></script>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="/js/jquery-3.6.0.js"></script>
 </head>
 <body>
 	<form action="mem_join.me" name="fr" id="fr" method="post">

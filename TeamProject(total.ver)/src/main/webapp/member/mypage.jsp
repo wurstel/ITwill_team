@@ -61,6 +61,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="../inc/header.jsp"></jsp:include>
 <div id="page-wrapper">
   <!-- 사이드바 -->
   <div id="sidebar-wrapper">
