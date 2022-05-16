@@ -85,7 +85,7 @@ public class Frontcontroller_me extends HttpServlet {
 			forward.setRedirect(true);
     	}else if(command.equals("/mypage.me")) {
     		forward = new ActionForward();
-    		forward.setPath("mem/mypage.jsp");
+    		forward.setPath("member/mypage.jsp");
     		forward.setRedirect(false);
     	}
     	
