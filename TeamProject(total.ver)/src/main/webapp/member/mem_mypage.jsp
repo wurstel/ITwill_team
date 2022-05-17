@@ -96,7 +96,7 @@
 			<tr><td>멤버쉽등급</td><td><input type="text" class=""></td></tr>
       	</table>
       </form>
-      	<button type="submit" class="btn btn-secondary">수정하기</button>
+<!--       	<button type="submit" class="btn btn-secondary">수정하기</button> -->
     </div>
   </div>
   <!-- /본문 -->
