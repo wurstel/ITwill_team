@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -82,12 +83,47 @@
   <!-- /사이드바 -->
 
   <!-- 본문 -->
-  <div id="page-content-wrapper">
-    <div class="container-fluid">
-      <h1>간단한 사이드바</h1>
-      <p>메뉴가 많아서 한 페이지를 넘으면 세로 스크롤바 생김</p>
+<div id="page-content-wrapper">
+    <div class="container">
+      <h1 class="display-5">장바구니</h1>
     </div>
-  </div>
+    <div class="container">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">상품</th>
+					<th scope="col">가격</th>
+					<th scope="col">수량</th>
+					<th scope="col">주문금액</th>
+					<th scope="col">비고</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- 장바구니 목록  -->
+<%-- 				<c:forEach items="" var=""> --%>
+			    <tr>
+			      <th scope="row">1</th>
+			      <td>Mark</td>
+			      <td>Otto</td>
+			      <td>@mdo</td>
+			      <td><button type="button" class="btn btn-danger btn-sm">삭제하기</button></td>
+			    </tr>
+<%-- 				</c:forEach> --%>
+			<!-- /장바구니 목록  -->    
+			    <tr>
+			      <th scope="row"></th>
+			      <td></td>
+			      <td></td>
+			      <td>총 결제금액</td>
+			      <td><!-- 코드로 합계를 나타내서 표현 --></td>
+			    </tr>
+			</tbody>
+		</table>   	
+    </div>
+    <div class="container text-center">
+    	<button type="button" class="btn btn-outline-success btn-lg col-6">주문하기</button>
+    </div>
+</div>
   <!-- /본문 -->
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
