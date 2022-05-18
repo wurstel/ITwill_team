@@ -67,10 +67,10 @@
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav">
       <li class="sidebar-brand">
-        <a href="#">마이페이지</a>
+        <a href="mypage.me">마이페이지</a>
       </li>
-      <li><a href="#">회원정보변경</a></li>
-      <li><a href="#">주문조회</a></li>
+      <li><a href="memInfoEdit.me">회원정보변경</a></li>
+      <li><a href="inquiry.me">주문조회</a></li>
       <li><a href="basket.me">장바구니</a></li>
       <li class="sidebar-brand">
         <a href="#">멤버쉽</a>
@@ -86,14 +86,14 @@
     <div class="container-fluid">
       <form action="">
       	<table class="table">
-			<tr><td>아이디</td><td><input type="text" class=""></td></tr>
-			<tr><td>이름</td><td><input type="text" class=""></td></tr>
-			<tr><td>생년월일</td><td><input type="text" class=""></td></tr>
-			<tr><td>성별</td><td><input type="text" class=""></td></tr>
-			<tr><td>email</td><td><input type="text" class=""></td></tr>
-			<tr><td>전화번호</td><td><input type="text" class=""></td></tr>
-			<tr><td>주소</td><td><input type="text" class=""></td></tr>
-			<tr><td>멤버쉽등급</td><td><input type="text" class=""></td></tr>
+			<tr><td>아이디</td><td>${sessionScope.sId }</td></tr>
+			<tr><td>이름</td><td></td></tr>
+			<tr><td>생년월일</td><td></td></tr>
+			<tr><td>성별</td><td></td></tr>
+			<tr><td>email</td><td></td></tr>
+			<tr><td>전화번호</td><td></td></tr>
+			<tr><td>주소</td><td></td></tr>
+			<tr><td>멤버쉽등급</td><td></td></tr>
       	</table>
       </form>
 <!--       	<button type="submit" class="btn btn-secondary">수정하기</button> -->

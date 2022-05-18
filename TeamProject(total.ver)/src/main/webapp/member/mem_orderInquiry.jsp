@@ -85,7 +85,7 @@
   <!-- 본문 -->
 <div id="page-content-wrapper">
     <div class="container">
-      <h1 class="display-5">장바구니</h1>
+      <h1 class="display-5">주문조회</h1>
     </div>
     <div class="container">
 		<table class="table">
@@ -99,29 +99,19 @@
 				</tr>
 			</thead>
 			<tbody>
-			<!-- 장바구니 목록  -->
+			<!--  주문목록  -->
 <%-- 				<c:forEach items="" var=""> --%>
 			    <tr>
 			      <td>1</td>
-			      <td>Mark</td>
-			      <td>Otto</td>
-			      <td>@mdo</td>
-			      <td><button type="button" class="btn btn-danger btn-sm">삭제하기</button></td>
+			      <td></td>
+			      <td></td>
+			      <td></td>
+			      <td></td>
 			    </tr>
 <%-- 				</c:forEach> --%>
-			<!-- /장바구니 목록  -->    
-			    <tr>
-			      <td scope="row"></td>
-			      <td></td>
-			      <td></td>
-			      <td>총 결제금액</td>
-			      <td><!-- 코드로 합계를 나타내서 표현 --></td>
-			    </tr>
+			<!-- /주문목록  -->    
 			</tbody>
 		</table>   	
-    </div>
-    <div class="container text-center">
-    	<button type="button" class="btn btn-outline-success btn-lg col-6">주문하기</button>
     </div>
 </div>
   <!-- /본문 -->
