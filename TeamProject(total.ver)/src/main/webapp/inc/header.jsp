@@ -40,6 +40,17 @@
 			                <a class="nav-link" href="join_form.me">회원가입</a>                
 			            </li>
             	</c:when>
+           		<c:when test="${sessionScope.sId eq 'almeal'}">
+            		<li class="nav-item ">                                                                
+			                <a class="nav-link">관리자</a>                
+			            </li>
+	            		<li class="nav-item ">                                                                
+			                <a class="nav-link" href="adminpage.me">관리자페이지</a>                
+			            </li>
+			            <li class="nav-item ">                                                                
+			                <a class="nav-link" href="logout.me">로그아웃</a>                
+			            </li>
+            	</c:when>
             	<c:otherwise>
             			<li class="nav-item ">                                                                
 			                <a class="nav-link">${sId}</a>                

@@ -9,27 +9,48 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import svc.QNAWriteProService;
+import svc.ProductRegisterProService;
 import vo.ActionForward;
-import vo.QnaDTO;
+import vo.ProductDTO;
 
-public class QNAWriteProAction implements Action {
+/*
+ * XXXAction 클래스가 공통으로 갖는 execute() 메서드를 직접 정의하지 않고
+ * Action 인터페이스를 상속받아 추상메서드를 구현하여 실수를 예방 가능
+ * => 추상메서드 execute() 구현을 강제 => 코드의 통일성과 안정성 향상
+ */
+public class ProductRegisterProAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("QNAWriteProAction");
+		
+		System.out.println("ProductRegisterProAction");
 		ActionForward forward = null;
 		
-		QnaDTO qna = new QnaDTO();
-		qna.setQna_mem_id(request.getParameter("qna_mem_id"));
-		qna.setQna_pass(request.getParameter("qna_pass"));
-		qna.setQna_title(request.getParameter("qna_title"));
-		qna.setQna_content(request.getParameter("qna_content"));
+		String uploadPath = "upload";
+		int fileSize = 1024 * 1024 * 10;
+		ServletContext context = request.getServletContext();
+		String realPath = context.getRealPath(uploadPath);
+		MultipartRequest multi = new MultipartRequest(
+				request, // 1) 실제 요청 정보가 포함된 request 객체
+				realPath, // 2) 실제 업로드 폴더 경로 
+				fileSize, // 3) 업로드 파일 크기(10MB 제한)
+				"UTF-8", // 4) 한글 파일명에 대한 인코딩 방식 
+				new DefaultFileRenamePolicy());
 		
-		QNAWriteProService service = new QNAWriteProService();
-		boolean isWriteSuccess = service.registArticle(qna);
 		
-		if(!isWriteSuccess) { // 글쓰기 실패 시(결과값이 false 일 경우)
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setPd_name(multi.getParameter("pd_name"));
+		productDTO.setPd_price(multi.getParameter("pd_price"));
+		productDTO.setPd_detail(multi.getParameter("pd_detail"));
+		productDTO.setPd_img(multi.getParameter("pd_img"));
+	
+		
+		
+		
+		ProductRegisterProService service = new ProductRegisterProService();
+		boolean isRegisterSuccess = service.registProduct(productDTO);
+		
+		if(!isRegisterSuccess) { // 글쓰기 실패 시(결과값이 false 일 경우)
 			// 자바스크립트를 통해 "글쓰기 실패!" 출력하고 이전페이지로 돌아가기
 			// => 자바 클래스에서 웹브라우저를 통해 HTML 코드 등을 출력하려면
 			//    response 객체를 통해 문서 타입 설정 및 PrintWriter() 객체를 통해 태그 출력하기
@@ -49,10 +70,24 @@ public class QNAWriteProAction implements Action {
 			// ActionForward 객체를 통해 "BoardList.bo" 서블릿 주소 요청
 			// => 새로운 요청이므로 서블릿 주소 변경을 위해 Redirect 방식으로 포워딩 설정
 			forward = new ActionForward();
-			forward.setPath("CustomerCenter.cu");
+			forward.setPath("ProductList.ad");
 			forward.setRedirect(true);
 		}
 		return forward;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

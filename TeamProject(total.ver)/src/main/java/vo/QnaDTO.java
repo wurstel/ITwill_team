@@ -1,21 +1,19 @@
 package vo;
 
-import java.sql.Date;
 
 /*
   
 	CREATE DATABASE subscribeproject;
 	
-	CREATE TABLE qna (
-		qna_idx INT PRIMARY KEY,
-		qna_subject VARCHAR(50),
-		qna_content VARCHAR(5000),
-		qna_file VARCHAR(50) NOT NULL,
-   		qna_real_file VARCHAR(50) NOT NULL,
-		qna_re_ref INT NOT NULL,
-		qna_re_lev INT NOT NULL,
-		qna_re_seq INT NOT NULL,
-		qna_date DATE
+	CREATE TABLE QNA(
+		qna_num INT,
+		qna_mem_id VARCHAR(20),
+		qna_pass VARCHAR(16),
+		qna_title VARCHAR(50),
+		qna_content VARCHAR(500),
+		qna_re_ref INT,
+		qna_re_lev INT,
+		qna_re_seq INT
 	);
 
 */
@@ -23,46 +21,44 @@ import java.sql.Date;
 
 public class QnaDTO {
 	
-	private int qna_idx;
-	private String qna_subject;
+	private int qna_num;
+	private String qna_mem_id;
+	private String qna_pass;
+	private String qna_title;
 	private String qna_content;
-	private String qna_file;
-	private String qna_real_file;
 	private int qna_re_ref;
 	private int qna_re_lev;
 	private int qna_re_seq;
-	private Date qna_date;
 	
-	
-	public int getQna_idx() {
-		return qna_idx;
+	public int getQna_num() {
+		return qna_num;
 	}
-	public void setQna_idx(int qna_idx) {
-		this.qna_idx = qna_idx;
+	public void setQna_num(int qna_num) {
+		this.qna_num = qna_num;
 	}
-	public String getQna_subject() {
-		return qna_subject;
+	public String getQna_mem_id() {
+		return qna_mem_id;
 	}
-	public void setQna_subject(String qna_subject) {
-		this.qna_subject = qna_subject;
+	public void setQna_mem_id(String qna_mem_id) {
+		this.qna_mem_id = qna_mem_id;
+	}
+	public String getQna_pass() {
+		return qna_pass;
+	}
+	public void setQna_pass(String qna_pass) {
+		this.qna_pass = qna_pass;
+	}
+	public String getQna_title() {
+		return qna_title;
+	}
+	public void setQna_title(String qna_title) {
+		this.qna_title = qna_title;
 	}
 	public String getQna_content() {
 		return qna_content;
 	}
 	public void setQna_content(String qna_content) {
 		this.qna_content = qna_content;
-	}
-	public String getQna_file() {
-		return qna_file;
-	}
-	public void setQna_file(String qna_file) {
-		this.qna_file = qna_file;
-	}
-	public String getQna_real_file() {
-		return qna_real_file;
-	}
-	public void setQna_real_file(String qna_real_file) {
-		this.qna_real_file = qna_real_file;
 	}
 	public int getQna_re_ref() {
 		return qna_re_ref;
@@ -82,18 +78,12 @@ public class QnaDTO {
 	public void setQna_re_seq(int qna_re_seq) {
 		this.qna_re_seq = qna_re_seq;
 	}
-	public Date getQna_date() {
-		return qna_date;
-	}
-	public void setQna_date(Date qna_date) {
-		this.qna_date = qna_date;
-	}
 	@Override
 	public String toString() {
-		return "QnaDTO [qna_idx=" + qna_idx + ", qna_subject=" + qna_subject + ", qna_content=" + qna_content
-				+ ", qna_file=" + qna_file + ", qna_real_file=" + qna_real_file + ", qna_re_ref=" + qna_re_ref
-				+ ", qna_re_lev=" + qna_re_lev + ", qna_re_seq=" + qna_re_seq + ", qna_date=" + qna_date + "]";
+		return "QnaDTO [qna_num=" + qna_num + ", qna_mem_id=" + qna_mem_id + ", qna_pass=" + qna_pass + ", qna_title="
+				+ qna_title + ", qna_content=" + qna_content + ", qna_re_ref=" + qna_re_ref + ", qna_re_lev="
+				+ qna_re_lev + ", qna_re_seq=" + qna_re_seq + "]";
 	}
+	
 		
-
 }

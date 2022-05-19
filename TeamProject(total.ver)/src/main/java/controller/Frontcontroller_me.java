@@ -99,6 +99,10 @@ public class Frontcontroller_me extends HttpServlet {
     		forward = new ActionForward();
     		forward.setPath("member/mem_orderInquiry.jsp");
     		forward.setRedirect(false);
+    	}else if(command.equals("/adminpage.me")) {
+    		forward = new ActionForward();
+    		forward.setPath("admin/adminDashboard.jsp");
+    		forward.setRedirect(false);
     	}
     	
     	

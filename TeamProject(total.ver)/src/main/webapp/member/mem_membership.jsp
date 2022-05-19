@@ -104,7 +104,7 @@
 			      <td></td>
 			    </tr>
 <%-- 				</c:forEach> --%>
-			<!-- /멤버쉽정보  -->    
+			<!-- /멤버쉽정보ㄴ  -->    
 			</tbody>
 		</table> 
 <!--       	<button type="submit" class="btn btn-secondary">수정하기</button> -->

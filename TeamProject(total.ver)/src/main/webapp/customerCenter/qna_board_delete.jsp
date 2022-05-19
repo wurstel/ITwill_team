@@ -30,13 +30,12 @@
 	<!-- 게시판 글 삭제 -->
 	<h2>게시판 글 삭제</h2>
 	<section id="passForm">
-		<form action="QNADeletePro.bo" name="deleteForm" method="post">
-		<input type="hidden" name="board_num" value="${param.board_num }">
+		<form action="QNADeletePro.cu" name="deleteForm" method="post">
+		<input type="hidden" name="qna_num" value="${param.qna_num }">
 		<input type="hidden" name="page" value="${param.page }">
 			<table>
 				<tr>
-					<td><label>글 비밀번호 : </label></td>
-					<td><input type="password" name="board_pass" required="required"></td>
+					<td><label>정말 삭제하시겠습니까?</label></td>
 				</tr>
 				<tr>
 					<td colspan="2">

@@ -42,27 +42,25 @@
 	<!-- 게시판 등록 -->
 	<section id="writeForm">
 		<h1>게시판 글 등록</h1>
-		<!-- 
-		form 데이터 중 파일 정보가 포함될 경우
-		<form> 태그 속성에 enctype="multipart/form-data" 명시 필수!
-		(생략 시 enctype="application/x-www-form-urlencoded" 속성이 기본값으로 설정됨)
-		-->
-		<form action="./QNAWritePro.cu" name="QNAWriteForm" method="post" enctype="multipart/form-data">
+		<form action="./QNAWritePro.cu" name="QNAWriteForm" method="post">
 			<table>
 				<tr>
-					<td class="td_left"><label for="qna_subject">제목</label></td>
-					<td class="td_right"><input type="text" name="qna_subject" required="required" /></td>
+					<td class="td_left"><label for="qna_mem_id">글쓴이</label></td>
+					<td class="td_right"><input type="text" name="qna_mem_id"/></td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="qna_pass">비밀번호</label></td>
+					<td class="td_right"><input type="password" name="qna_pass"/></td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="qna_title">제목</label></td>
+					<td class="td_right"><input type="text" name="qna_title"/></td>
 				</tr>
 				<tr>
 					<td class="td_left"><label for="qna_content">내용</label></td>
 					<td class="td_right">
-						<textarea id="board_content" name="qna_content" cols="40" rows="15" required="required"></textarea>
+						<textarea id="qna_content" name="qna_content" cols="40" rows="15"></textarea>
 					</td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="qna_file">파일 첨부</label></td>
-					<!-- 파일 첨부 형식은 input 태그의 type="file" 속성 사용 -->
-					<td class="td_right"><input type="file" name="qna_file" required="required" /></td>
 				</tr>
 			</table>
 			<section id="commandCell">
@@ -74,11 +72,3 @@
 	</section>
 </body>
 </html>
-
-
-
-
-
-
-
-
