@@ -24,12 +24,12 @@
 
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
-	<h2 class="text-center"><a href="CustomerCenter.cu">Q&A 게시판</a></h2>
+	<h2 class="text-center" ><a href="CustomerCenter.cu">Q&A 게시판</a></h2>
 	<table class="table table-hover table-striped text-center" style="border: 1px solid;">
 		<tr id="tr_top">
-			<td width = "80">번호</td>
-			<td width = "100">작성자</td> <!-- 로그인 sid -->
-			<td width = "500">제목</td>
+			<th width = "80">번호</th>
+			<th width = "100">작성자</th> <!-- 로그인 sid -->
+			<th width = "500">제목</th>
 		</tr>
 		<!-- JSTL 의 c:forEach 태그를 사용하여 articleList 에서 BoardDTO 객체를 꺼내서 내용 출력 -->
 		<!-- 단, 게시물 목록이 하나라도 존재할 경우에만 출력 c:if 태그 사용 -->
@@ -37,7 +37,7 @@
 			<c:forEach var="board" items="${articleList }">
 				<tr>
 					<td>${board.getQna_num() }</td>
-					<td>작성자</td>
+					<td>${board.getQna_mem_id() }</td>
 					<td id="subject">
 						<a href="QNADetail.cu?qna_num=${board.getQna_num() }&page=${pageNum}">
 							<!-- 답글에 대한 들여쓰기(공백 추가) 작업 처리 -->
