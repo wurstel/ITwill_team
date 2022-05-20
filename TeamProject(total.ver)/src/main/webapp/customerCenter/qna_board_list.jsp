@@ -6,62 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <title>Q&A 게시판</title>
-<style type="text/css">
-	#listForm {
-		width: 1024px;
-		max-height: 610px;
-		margin: auto;
-	}
-	
-	h2 {
-		text-align: center;
-	}
-	
-	table {
-		margin: auto;
-		width: 1024px;
-	}
-	
-	#tr_top {
-		background: orange;
-		text-align: center;
-	}
-	
-	table td {
-		text-align: center;
-	}
-	
-	#subject {
-		text-align: left;
-		padding-left: 20px;
-	}
-	
-	#pageList {
-		margin: auto;
-		width: 1024px;
-		text-align: center;
-	}
-	
-	#emptyArea {
-		margin: auto;
-		width: 1024px;
-		text-align: center;
-	}
-	
-	#buttonArea {
-		margin: auto;
-		width: 1024px;
-		text-align: right;
-	}
-	
-	a {
-		text-decoration: none;
-	}
-</style>
 </head>
 <body>
+	<jsp:include page="../inc/header.jsp"></jsp:include>
+	<div class="container">
 	<!-- JSTL 의 c:set 태그를 사용하여 PageInfo 객체의 값들을 변수에 저장 -->
 	<c:set var="pageNum" value="${pageInfo.getPageNum() }" />
 	<c:set var="maxPage" value="${pageInfo.getMaxPage() }" />
@@ -71,71 +24,84 @@
 
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
-	<h2><a href="CustomerCenter.cu">Q&A 게시판</a></h2>
-	<h2><a href="">FAQ 게시판</a></h2>
-	<table>
-		<tr id="tr_top">
-			<td width = "80">번호</td>
-			<td width = "100">작성자</td> <!-- 로그인 sid -->
-			<td width = "500">제목</td>
-		</tr>
+	<table class="table table-hover text-center">
+		<thead class="table-light">
+			<tr>
+				<th scope="col" width=80>글번호</th>
+	            <th scope="col">제목</th>
+	            <th scope="col" width=100>작성자</th>
+	            <th scope="col" width=150>작성일</th>
+	            <th scope="col">삭제</th>
+			</tr>
+		</thead>
+		<tbody>
 		<!-- JSTL 의 c:forEach 태그를 사용하여 articleList 에서 BoardDTO 객체를 꺼내서 내용 출력 -->
 		<!-- 단, 게시물 목록이 하나라도 존재할 경우에만 출력 c:if 태그 사용 -->
 		<c:if test="${not empty articleList and pageInfo.getListCount() > 0}">
 			<c:forEach var="board" items="${articleList }">
-				<tr>
-					<td>${board.getQna_num() }</td>
-					<td>작성자</td>
-					<td id="subject">
+				<tr class="text-center">
+					<td scope="row">${board.getQna_num() }</td>
+					<td id="subject" scope="row">
 						<a href="QNADetail.cu?qna_num=${board.getQna_num() }&page=${pageNum}">
 							<!-- 답글에 대한 들여쓰기(공백 추가) 작업 처리 -->
 							${board.getQna_title() }
 						</a>
 					</td>
+					<td scope="row">${board.getQna_mem_id() }</td>
+					<td scope="row">작성일</td>
+					<td scope="row">
+                  <button type="button" class="btn btn-outline-danger" onclick="location.href='QNADeleteForm.cu'">삭제</button>
+				<!-- 세션 아이디가 관리자 일때 삭제 -->
+              </td>  
 				</tr>
 			</c:forEach>
 		</c:if>
+		</tbody>
 	</table>
 	</section>
 	<section id="buttonArea">
-		<input type="button" value="글쓰기" onclick="location.href='QNAWriteForm.cu'" />
+		<button type="button" onclick="location.href='QNAWriteForm.cu'" class="btn btn-outline-primary">글쓰기</button>
 	</section>
 	<section id="pageList">
-		<!-- 
-		현재 페이지 번호(pageNum)가 1보다 클 경우에만 [이전] 링크 동작
-		=> 클릭 시 notice.jsp 로 이동하면서 
-		   현재 페이지 번호(pageNum) - 1 값을 page 파라미터로 전달
-		-->
-		<c:choose>
-			<c:when test="${pageNum > 1}">
-				<input type="button" value="이전" onclick="location.href='QNABoardList.cu?page=${pageNum - 1}'">
-			</c:when>
-			<c:otherwise>
-				<input type="button" value="이전">
-			</c:otherwise>
-		</c:choose>
-			
-		<!-- 페이지 번호 목록은 시작 페이지(startPage)부터 끝 페이지(endPage) 까지 표시 -->
-		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<!-- 단, 현재 페이지 번호는 링크 없이 표시 -->
-			<c:choose>
-				<c:when test="${pageNum eq i}">
-					${i }
-				</c:when>
-				<c:otherwise>
-					<a href="QNABoardList.cu?page=${i }">${i }</a>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-
-		<!-- 현재 페이지 번호(pageNum)가 총 페이지 수보다 작을 때만 [다음] 링크 동작 -->
-		<c:choose>
-			<c:when test="${pageNum < maxPage}">
-				<input type="button" value="다음" onclick="location.href='QNABoardList.cu?page=${pageNum + 1}'">
-			</c:when>
-			<c:otherwise>
-				<input type="button" value="다음">
-			</c:otherwise>
-		</c:choose>
+		<div size="200">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					<c:choose>
+						<c:when test="${pageNum > 1}">
+							<a class="page-link" href="QNAList.cu?page=${pageNum - 1}">Previous</a>
+						</c:when>
+						<c:otherwise>
+							<a class="page-link" aria-disabled="true">Previous</a>
+						</c:otherwise>
+					</c:choose>
+				</li>
+	            <li class="page-item">
+	            	<c:forEach var="i" begin="${startPage }" end="${endPage }">
+	            		<c:choose>
+	            			<c:when test="${pageNum eq i}">
+	            				<a class="page-link" aria-disabled="true">${i }</a>
+	            			</c:when>
+	            			<c:otherwise>
+	            				<a class="page-link" href="QNAList.cu?page=${i }">${i }</a>
+	            			</c:otherwise>
+	            		</c:choose>
+	            	</c:forEach>
+	            </li>
+	            <li class="page-item">
+	            	<c:choose>
+	            		<c:when test="${pageNum < maxPage}">
+	            			<a class="page-link" href="QNAList.cu?page=${pageNum + 1}">Next</a>
+	            		</c:when>
+	            		<c:otherwise>
+	            			<a class="page-link" aria-disabled="true">Next</a>
+	            		</c:otherwise>
+	            	</c:choose>
+	            </li>
+			</ul>
+		</div>
 	</section>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	</div>
 </body>

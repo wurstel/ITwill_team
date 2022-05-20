@@ -4,71 +4,62 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+	crossorigin="anonymous"></script>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Q&A 게시판</title>
-<style type="text/css">
-	#writeForm {
-		width: 500px;
-		height: 450px;
-		border: 1px solid red;
-		margin: auto;
-	}
-	
-	h1 {
-		text-align: center;
-	}
-	
-	table {
-		margin: auto;
-		width: 450px;
-	}
-	
-	.td_left {
-		width: 150px;
-		background: orange;
-		text-align: center;
-	}
-	
-	.td_right {
-		width: 300px;
-		background: skyblue;
-	}
-	
-	#commandCell {
-		text-align: center;
-	}
-</style>
 </head>
 <body>
-	<!-- 게시판 등록 -->
-	<section id="writeForm">
-		<h1>게시판 글 등록</h1>
-		<form action="./QNAWritePro.cu" name="QNAWriteForm" method="post">
-			<table>
-				<tr>
-					<td class="td_left"><label for="qna_mem_id">글쓴이</label></td>
-					<td class="td_right"><input type="text" name="qna_mem_id"/></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="qna_pass">비밀번호</label></td>
-					<td class="td_right"><input type="password" name="qna_pass"/></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="qna_title">제목</label></td>
-					<td class="td_right"><input type="text" name="qna_title"/></td>
-				</tr>
-				<tr>
-					<td class="td_left"><label for="qna_content">내용</label></td>
-					<td class="td_right">
-						<textarea id="qna_content" name="qna_content" cols="40" rows="15"></textarea>
-					</td>
-				</tr>
-			</table>
-			<section id="commandCell">
-				<input type="submit" value="등록">&nbsp;&nbsp;
-				<input type="reset" value="다시쓰기">&nbsp;&nbsp;
-				<input type="button" value="취소" onclick="history.back()">
-			</section>
+<jsp:include page="../inc/header.jsp"></jsp:include>
+	<main role="main" class="container">
+		<form name="QNAWriteForm" method="POST" action="./QNAWritePro.cu">
+			<div class="pt-1">
+			<input type="text" name="qna_mem_id" placeholder="아이디"
+				style="border-radius: 5px; width: 100%; padding: 5px;"><br>
+			</div>
+			<div class="pt-1">
+				<input type="password" name="qna_pass" placeholder="비밀번호"
+				style="border-radius: 5px; width: 100%; padding: 5px;">
+			</div>
+			<div class="pt-1">
+			<input type="text" name="qna_title" placeholder="제목을 입력하세요"
+				style="border-radius: 5px; width: 100%; padding: 5px;">
+			</div>
+			<div class="pt-1">
+				<textarea id="summernote" name="qna_content"></textarea>
+			</div>
+			<script>
+				$('#summernote').summernote({
+					placeholder : '내용을 입력해주세요',
+					tabsize : 2,
+					height : 300
+				});
+			</script>
+			<div class="pt-1 text-right">
+				<button class="btn btn btn-success" type="submit"
+					style="width: 10%; padding: 5px;">제출</button>
+			</div>
 		</form>
-	</section>
+	</main>
 </body>
 </html>
