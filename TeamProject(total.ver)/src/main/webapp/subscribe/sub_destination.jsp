@@ -2,54 +2,68 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	function postCodeSearch() {
-	    new daum.Postcode({
-	        oncomplete: function(data) {
-	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	
-	            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	            var roadAddr = data.roadAddress; // 도로명 주소 변수
-	            var extraRoadAddr = ''; // 참고 항목 변수
-	
-	            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-	            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-	            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-	                extraRoadAddr += data.bname;
-	            }
-	            // 건물명이 있고, 공동주택일 경우 추가한다.
-	            if(data.buildingName !== '' && data.apartment === 'Y'){
-	               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-	            }
-	            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-	            if(extraRoadAddr !== ''){
-	                extraRoadAddr = ' (' + extraRoadAddr + ')';
-	            }
-	
-	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	            document.getElementById("postcode").value = data.zonecode;
-	            document.getElementById("address").value = roadAddr;
-	            
-	           
-	        }
-	    }).open();
-	}
-</script>
+<script src="../js/joinFunc.js"></script>
 </head>
 <body>
-	<h1>subscribe_destination.jsp</h1>
-	<form action="payment.pm"> <!-- 주소 api를 이용 -->	
-		<table border="1">
-			<tr><th colspan ="3">배송지 주소 입력</th></tr>
-			<tr><td>우편번호</td><td><input type="text" name="postcode" id="postcode" readonly></td><td><input type="button" value="주소 검색" onclick="postCodeSearch()"></td></tr>
-			<tr><td>주소</td><td><input type="text" name="address" id="address" readonly></td><td><input type="text" placeholder="상세주소 입력"></td></tr>
-			<tr><th colspan ="3"><input type="submit" value="배송지 선택 완료"></th></tr>
-		</table>
-	</form>
+<jsp:include page="../inc/header.jsp"></jsp:include>
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <h3>배송정보 입력</h3>
+            <div class="card">
+                <form class="form-card" action="payment.pm">
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">우편번호<span class="text-danger"> *</span></label> <input type="text" id="postcode" name="postcode" readonly> </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger"> &nbsp;</span></label><input type="button" value="주소 검색" onclick="postCodeSearch()"></div>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">주소<span class="text-danger"> *</span></label> <input type="text" id="address" name="address" > </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">상세주소<span class="text-danger"> *</span></label> <input type="text" id="address_detail" name="address_detail" placeholder="상세주소 입력" > </div>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">전화번호 <span class="text-danger"> *</span></label> <input type="text" id="phone" name="phone" placeholder="연락받을 전화번호 입력" > </div>
+                    </div>
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">배송시 요청사항<span class="text-danger"> *</span></label>
+                        	<select>
+                        		<option value="직접 수령 부재시 문 앞">직접 수령 부재시 문 앞</option>
+                        		<option value="문 앞">문 앞</option>
+                        		<option value="경비실">경비실</option>
+                        		<option value="택배함">택배함</option>
+                        	</select> 
+                       	</div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="form-group col-sm-6"> <button type="submit" class="btn-block btn-primary">배송정보 입력</button> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 	<h1>subscribe_destination.jsp</h1> -->
+<!-- 	<form action="payment.pm"> 주소 api를 이용	 -->
+<!-- 		<table border="1"> -->
+<!-- 			<tr><th colspan ="3">배송지 주소 입력</th></tr> -->
+<!-- 			<tr><td>우편번호</td><td><input type="text" name="postcode" id="postcode" readonly></td><td><input type="button" value="주소 검색" onclick="postCodeSearch()"></td></tr> -->
+<!-- 			<tr><td>주소</td><td><input type="text" name="address" id="address" readonly></td><td><input type="text" placeholder="상세주소 입력"></td></tr> -->
+<!-- 			<tr><th colspan ="3"><input type="submit" value="배송지 선택 완료"></th></tr> -->
+<!-- 		</table> -->
+<!-- 	</form> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>	
 </body>
 </html>
