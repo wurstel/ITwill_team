@@ -24,29 +24,39 @@
 
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
-	<h2 class="text-center" ><a href="CustomerCenter.cu">Q&A 게시판</a></h2>
-	<table class="table table-hover table-striped text-center">
-		<tr id="tr_top">
-			<th width = "80">번호</th>
-			<th width = "100">작성자</th> <!-- 로그인 sid -->
-			<th width = "500">제목</th>
-		</tr>
+	<table class="table table-hover text-center">
+		<thead class="table-light">
+			<tr>
+				<th scope="col" width=80>글번호</th>
+	            <th scope="col">제목</th>
+	            <th scope="col" width=100>작성자</th>
+	            <th scope="col" width=150>작성일</th>
+	            <th scope="col">삭제</th>
+			</tr>
+		</thead>
+		<tbody>
 		<!-- JSTL 의 c:forEach 태그를 사용하여 articleList 에서 BoardDTO 객체를 꺼내서 내용 출력 -->
 		<!-- 단, 게시물 목록이 하나라도 존재할 경우에만 출력 c:if 태그 사용 -->
 		<c:if test="${not empty articleList and pageInfo.getListCount() > 0}">
 			<c:forEach var="board" items="${articleList }">
 				<tr>
-					<td>${board.getQna_num() }</td>
-					<td>${board.getQna_mem_id() }</td>
-					<td id="subject">
+					<td scope="row">${board.getQna_num() }</td>
+					<td id="subject" scope="row">
 						<a href="QNADetail.cu?qna_num=${board.getQna_num() }&page=${pageNum}">
 							<!-- 답글에 대한 들여쓰기(공백 추가) 작업 처리 -->
 							${board.getQna_title() }
 						</a>
 					</td>
+					<td scope="row">${board.getQna_mem_id() }</td>
+					<td scope="row">작성일</td>
+					<td scope="row">
+                  <button type="button" class="btn btn-outline-danger" onclick="location.href='QNADeleteForm.cu'">삭제</button>
+				<!-- 세션 아이디가 관리자 일때 삭제 -->
+              </td>  
 				</tr>
 			</c:forEach>
 		</c:if>
+		</tbody>
 	</table>
 	</section>
 	<section id="buttonArea">
@@ -58,7 +68,7 @@
 				<li class="page-item">
 					<c:choose>
 						<c:when test="${pageNum > 1}">
-							<a class="page-link" href="QNABoardList.cu?page=${pageNum - 1}">Previous</a>
+							<a class="page-link" href="QNAList.cu?page=${pageNum - 1}">Previous</a>
 						</c:when>
 						<c:otherwise>
 							<a class="page-link" aria-disabled="true">Previous</a>
@@ -72,7 +82,7 @@
 	            				<a class="page-link" aria-disabled="true">${i }</a>
 	            			</c:when>
 	            			<c:otherwise>
-	            				<a class="page-link" href="QNABoardList.cu?page=${i }">${i }</a>
+	            				<a class="page-link" href="QNAList.cu?page=${i }">${i }</a>
 	            			</c:otherwise>
 	            		</c:choose>
 	            	</c:forEach>
@@ -80,7 +90,7 @@
 	            <li class="page-item">
 	            	<c:choose>
 	            		<c:when test="${pageNum < maxPage}">
-	            			<a class="page-link" href="QNABoardList.cu?page=${pageNum + 1}">Next</a>
+	            			<a class="page-link" href="QNAList.cu?page=${pageNum + 1}">Next</a>
 	            		</c:when>
 	            		<c:otherwise>
 	            			<a class="page-link" aria-disabled="true">Next</a>
