@@ -29,7 +29,7 @@ html, body {
 						<h5 class="card-title">스탠다드</h5>
 						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
 							adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-						<a href="#" class="btn btn-primary">More</a>
+						<a href="sub_determine_st.sub" class="btn btn-primary">More</a>
 					</div>
 				</div>
 	        </div>
@@ -40,7 +40,7 @@ html, body {
 					<h5 class="card-title">프리미엄</h5>
 					<p class="card-text">Lorem ipsum dolor sit amet, consectetur
 						adipiscing elit. Nullam egestas sed sem ut malesuada.</p>
-					<a href="#" class="btn btn-primary">More</a>
+					<a href="sub_determine_pre.sub" class="btn btn-primary">More</a>
 				</div>
 			</div>
 		</div>

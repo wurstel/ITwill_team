@@ -30,7 +30,7 @@
                         <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">상세주소<span class="text-danger"> *</span></label> <input type="text" id="address_detail" name="address_detail" placeholder="상세주소 입력" > </div>
                     </div>
                     <div class="row justify-content-between text-left">
-                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">전화번호 <span class="text-danger"> *</span></label> <input type="text" id="phone" name="phone" placeholder="연락받을 전화번호 입력" > </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">전화번호 <span class="text-danger"> *</span></label> <input type="text" id="phoneNum" name="phoneNum" placeholder="연락받을 전화번호 입력" onblur="checkPhone(this.value)"> </div>
                     </div>
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">배송시 요청사항<span class="text-danger"> *</span></label>
