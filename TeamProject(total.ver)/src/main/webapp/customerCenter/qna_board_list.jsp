@@ -40,16 +40,16 @@
 		<c:if test="${not empty articleList and pageInfo.getListCount() > 0}">
 			<c:forEach var="board" items="${articleList }">
 				<tr class="text-center">
-					<td scope="row">${board.getQna_num() }</td>
-					<td id="subject" scope="row">
-						<a href="QNADetail.cu?qna_num=${board.getQna_num() }&page=${pageNum}">
+					<td scope="row" style="text-align: center; vertical-align: middle;">${board.getQna_num() }</td>
+					<td id="subject" scope="row" style="text-align: center; vertical-align: middle;">
+						<a href="QNADetail.cu?qna_num=${board.getQna_num() }&page=${pageNum}" style="text-decoration: none;">
 							<!-- 답글에 대한 들여쓰기(공백 추가) 작업 처리 -->
 							${board.getQna_title() }
 						</a>
 					</td>
-					<td scope="row">${board.getQna_mem_id() }</td>
-					<td scope="row">작성일</td>
-					<td scope="row">
+					<td scope="row" style="text-align: center; vertical-align: middle;">${board.getQna_mem_id() }</td>
+					<td scope="row" style="text-align: center; vertical-align: middle;">작성일</td>
+					<td scope="row" style="text-align: center; vertical-align: middle;">
                   <button type="button" class="btn btn-outline-danger" onclick="location.href='QNADeleteForm.cu'">삭제</button>
 				<!-- 세션 아이디가 관리자 일때 삭제 -->
               </td>  
@@ -63,7 +63,7 @@
 		<button type="button" onclick="location.href='QNAWriteForm.cu'" class="btn btn-outline-primary">글쓰기</button>
 	</section>
 	<section id="pageList">
-		<div size="200">
+		<div style="size: auto;">
 			<ul class="pagination justify-content-center">
 				<li class="page-item">
 					<c:choose>
