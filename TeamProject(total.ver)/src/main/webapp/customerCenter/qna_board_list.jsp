@@ -25,7 +25,7 @@
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
 	<h2 class="text-center" ><a href="CustomerCenter.cu">Q&A 게시판</a></h2>
-	<table class="table table-hover table-striped text-center" style="border: 1px solid;">
+	<table class="table table-hover table-striped text-center">
 		<tr id="tr_top">
 			<th width = "80">번호</th>
 			<th width = "100">작성자</th> <!-- 로그인 sid -->
@@ -50,7 +50,7 @@
 	</table>
 	</section>
 	<section id="buttonArea">
-		<input type="button" value="글쓰기" onclick="location.href='QNAWriteForm.cu'" />
+		<button type="button" onclick="location.href='QNAWriteForm.cu'" class="btn btn-outline-primary">글쓰기</button>
 	</section>
 	<section id="pageList">
 		<div>
@@ -61,7 +61,7 @@
 							<a class="page-link" href="QNABoardList.cu?page=${pageNum - 1}">Previous</a>
 						</c:when>
 						<c:otherwise>
-							<a class="page-link" href="">Previous</a>
+							<a class="page-link" aria-disabled="true">Previous</a>
 						</c:otherwise>
 					</c:choose>
 				</li>
@@ -69,7 +69,7 @@
 	            	<c:forEach var="i" begin="${startPage }" end="${endPage }">
 	            		<c:choose>
 	            			<c:when test="${pageNum eq i}">
-	            				<a class="page-link" href="#">${i }</a>
+	            				<a class="page-link" aria-disabled="true">${i }</a>
 	            			</c:when>
 	            			<c:otherwise>
 	            				<a class="page-link" href="QNABoardList.cu?page=${i }">${i }</a>
@@ -83,7 +83,7 @@
 	            			<a class="page-link" href="QNABoardList.cu?page=${pageNum + 1}">Next</a>
 	            		</c:when>
 	            		<c:otherwise>
-	            			<a class="page-link" href="">Next</a>
+	            			<a class="page-link" aria-disabled="true">Next</a>
 	            		</c:otherwise>
 	            	</c:choose>
 	            </li>

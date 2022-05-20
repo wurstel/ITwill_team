@@ -9,6 +9,7 @@ import vo.QnaDTO;
 public class QNAModifyProService {
 
 	public boolean isArticleWriter(int qna_num, String qna_pass) {
+		System.out.println("QNAModifyProService - isArticleWriter");
 		boolean isArticleWriter = false;
 		
 		Connection con = getConnection();
