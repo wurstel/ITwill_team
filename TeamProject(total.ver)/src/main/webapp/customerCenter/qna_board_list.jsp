@@ -39,7 +39,7 @@
 		<!-- 단, 게시물 목록이 하나라도 존재할 경우에만 출력 c:if 태그 사용 -->
 		<c:if test="${not empty articleList and pageInfo.getListCount() > 0}">
 			<c:forEach var="board" items="${articleList }">
-				<tr>
+				<tr class="text-center">
 					<td scope="row">${board.getQna_num() }</td>
 					<td id="subject" scope="row">
 						<a href="QNADetail.cu?qna_num=${board.getQna_num() }&page=${pageNum}">
@@ -63,7 +63,7 @@
 		<button type="button" onclick="location.href='QNAWriteForm.cu'" class="btn btn-outline-primary">글쓰기</button>
 	</section>
 	<section id="pageList">
-		<div>
+		<div size="200">
 			<ul class="pagination justify-content-center">
 				<li class="page-item">
 					<c:choose>
