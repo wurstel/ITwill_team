@@ -31,13 +31,13 @@
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"></jsp:include>
-	<main role="main" class="container">
+	<main role="main" class="container" style="margin-top: 5em;">
 		<form name="QNAWriteForm" method="POST" action="./QNAWritePro.cu">
-			<div class="pt-1">
+			<div class="pt-1" style="float: left; margin-right:10px; margin-bottom: 5px;">
 			<input type="text" name="qna_mem_id" placeholder="아이디"
-				style="border-radius: 5px; width: 100%; padding: 5px;"><br>
+				style="border-radius: 5px; width: 100%; padding: 5px;">
 			</div>
-			<div class="pt-1">
+			<div class="pt-1" style="float: left;">
 				<input type="password" name="qna_pass" placeholder="비밀번호"
 				style="border-radius: 5px; width: 100%; padding: 5px;">
 			</div>

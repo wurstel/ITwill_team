@@ -36,15 +36,15 @@ QnaDTO article = (QnaDTO)request.getAttribute("article");
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"></jsp:include>
-	<main role="main" class="container">
+	<main role="main" class="container" style="margin-top: 5em;">
 		<form name="QNAModifyForm" method="POST" action="./QNAModifyPro.cu">
 			<input type="hidden" name="qna_num" value="<%=article.getQna_num()%>">
 			<input type="hidden" name="page" value="<%=request.getParameter("page")%>">
-			<div class="pt-1">
+			<div class="pt-1" style="float: left; margin-right:10px; margin-bottom: 5px;">
 			<input type="text" name="qna_mem_id" value="<%=article.getQna_mem_id() %>"
 				style="border-radius: 5px; width: 100%; padding: 5px;"><br>
 			</div>
-			<div class="pt-1">
+			<div class="pt-1" style="float: left; margin-right:10px; margin-bottom: 5px;">
 				<input type="password" name="qna_pass" placeholder="비밀번호"
 				style="border-radius: 5px; width: 100%; padding: 5px;">
 			</div>
