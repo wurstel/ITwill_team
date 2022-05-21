@@ -1,5 +1,6 @@
 package vo;
 
+import java.sql.*;
 
 /*
   
@@ -13,7 +14,8 @@ package vo;
 		qna_content VARCHAR(500),
 		qna_re_ref INT,
 		qna_re_lev INT,
-		qna_re_seq INT
+		qna_re_seq INT,
+		qna_date Date
 	);
 
 */
@@ -29,6 +31,7 @@ public class QnaDTO {
 	private int qna_re_ref;
 	private int qna_re_lev;
 	private int qna_re_seq;
+	private Date qna_date;
 	
 	public int getQna_num() {
 		return qna_num;
@@ -78,12 +81,22 @@ public class QnaDTO {
 	public void setQna_re_seq(int qna_re_seq) {
 		this.qna_re_seq = qna_re_seq;
 	}
+	public Date getQna_date() {
+		return qna_date;
+	}
+	public void setQna_date(Date qna_date) {
+		this.qna_date = qna_date;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "QnaDTO [qna_num=" + qna_num + ", qna_mem_id=" + qna_mem_id + ", qna_pass=" + qna_pass + ", qna_title="
 				+ qna_title + ", qna_content=" + qna_content + ", qna_re_ref=" + qna_re_ref + ", qna_re_lev="
-				+ qna_re_lev + ", qna_re_seq=" + qna_re_seq + "]";
+				+ qna_re_lev + ", qna_re_seq=" + qna_re_seq + ", qna_date=" + qna_date + "]";
 	}
+	
+	
 	
 		
 }

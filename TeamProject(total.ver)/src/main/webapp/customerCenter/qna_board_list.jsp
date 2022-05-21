@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <title>Q&A 게시판</title>
 </head>
 <body>
@@ -27,11 +27,11 @@
 	<table class="table table-hover text-center" style="margin-top: 5em;">
 		<thead class="table-light">
 			<tr>
-				<th scope="col" width=80>글번호</th>
+				<th scope="col" width="80">글번호</th>
 	            <th scope="col">제목</th>
-	            <th scope="col" width=100>작성자</th>
-	            <th scope="col" width=150>작성일</th>
-	            <th scope="col">삭제</th>
+	            <th scope="col" width="100">작성자</th>
+	            <th scope="col" width="150">작성일</th>
+	            <th scope="col" width="80">삭제</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -48,7 +48,7 @@
 						</a>
 					</td>
 					<td scope="row" style="text-align: center; vertical-align: middle;">${board.getQna_mem_id() }</td>
-					<td scope="row" style="text-align: center; vertical-align: middle;">작성일</td>
+					<td scope="row" style="text-align: center; vertical-align: middle;">${board.getQna_date() }</td>
 					<td scope="row" style="text-align: center; vertical-align: middle;">
                   <button type="button" class="btn btn-outline-danger" onclick="location.href='QNADeleteForm.cu'">삭제</button>
 				<!-- 세션 아이디가 관리자 일때 삭제 -->
@@ -99,8 +99,8 @@
 			</ul>
 		</nav>
 	</section>
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	</div>
 </body>

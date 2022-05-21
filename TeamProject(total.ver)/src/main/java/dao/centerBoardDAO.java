@@ -78,7 +78,7 @@ public class centerBoardDAO {
 				article.setQna_num(rs.getInt("qna_num"));
 				article.setQna_mem_id(rs.getString("qna_mem_id"));
 				article.setQna_title(rs.getString("qna_title"));
-				
+				article.setQna_date(rs.getDate("qna_date"));
 				articleList.add(article);
 			}
 			
@@ -111,7 +111,7 @@ public class centerBoardDAO {
 			}
 			close(pstmt);
 			
-			sql = "INSERT INTO qna VALUES (?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO qna VALUES (?,?,?,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, num); // 새 글 번호
 			pstmt.setString(2, qna.getQna_mem_id());
@@ -122,7 +122,6 @@ public class centerBoardDAO {
 			pstmt.setInt(6, num); // board_re_ref
 			pstmt.setInt(7, 0); // board_re_lev
 			pstmt.setInt(8, 0); // board_re_seq
-			
 			insertCount = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -159,7 +158,7 @@ public class centerBoardDAO {
 				article.setQna_re_ref(rs.getInt("qna_re_ref"));
 				article.setQna_re_lev(rs.getInt("qna_re_lev"));
 				article.setQna_re_seq(rs.getInt("qna_re_seq"));
-				
+				article.setQna_date(rs.getDate("qna_date"));
 			}
 		} catch (SQLException e) {
 			System.out.println("SQL 구문 오류 발생! - selectArticle()");
