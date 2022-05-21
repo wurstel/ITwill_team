@@ -31,7 +31,6 @@
 	            <th scope="col">제목</th>
 	            <th scope="col" width="100">작성자</th>
 	            <th scope="col" width="150">작성일</th>
-	            <th scope="col" width="80">삭제</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,10 +48,7 @@
 					</td>
 					<td scope="row" style="text-align: center; vertical-align: middle;">${board.getQna_mem_id() }</td>
 					<td scope="row" style="text-align: center; vertical-align: middle;">${board.getQna_date() }</td>
-					<td scope="row" style="text-align: center; vertical-align: middle;">
-                  <button type="button" class="btn btn-outline-danger" onclick="location.href='QNADeleteForm.cu'">삭제</button>
 				<!-- 세션 아이디가 관리자 일때 삭제 -->
-              </td>  
 				</tr>
 			</c:forEach>
 		</c:if>

@@ -8,7 +8,7 @@ import dao.centerBoardDAO;
 
 public class QNADeleteProService {
 
-	public boolean removeArticle(int qna_idx) {
+	public boolean removeArticle(int qna_num) {
 		System.out.println("QNADeleteProService - removeArticle");
 		boolean isDeleteSuccess = false;
 		
@@ -18,7 +18,7 @@ public class QNADeleteProService {
 		
 		boardDAO.setConnection(con);
 		
-		int deleteCount = boardDAO.deleteArticle(qna_idx);
+		int deleteCount = boardDAO.deleteArticle(qna_num);
 		
 		if(deleteCount > 0) {
 			commit(con);
