@@ -24,7 +24,7 @@
 
 	<!-- 게시판 리스트 -->
 	<section id="listForm">
-	<table class="table table-hover text-center">
+	<table class="table table-hover text-center" style="margin-top: 5em;">
 		<thead class="table-light">
 			<tr>
 				<th scope="col" width=80>글번호</th>
@@ -63,7 +63,7 @@
 		<button type="button" onclick="location.href='QNAWriteForm.cu'" class="btn btn-outline-primary">글쓰기</button>
 	</section>
 	<section id="pageList">
-		<div style="size: auto;">
+		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item">
 					<c:choose>
@@ -75,18 +75,17 @@
 						</c:otherwise>
 					</c:choose>
 				</li>
-	            <li class="page-item">
 	            	<c:forEach var="i" begin="${startPage }" end="${endPage }">
 	            		<c:choose>
 	            			<c:when test="${pageNum eq i}">
-	            				<a class="page-link" aria-disabled="true">${i }</a>
+	            				<li class="page-item"><a class="page-link" aria-disabled="true">${i }</a></li>
 	            			</c:when>
 	            			<c:otherwise>
-	            				<a class="page-link" href="QNAList.cu?page=${i }">${i }</a>
+	            				<li class="page-item"><a class="page-link" href="QNAList.cu?page=${i }">${i }</a></li>
 	            			</c:otherwise>
 	            		</c:choose>
 	            	</c:forEach>
-	            </li>
+	            
 	            <li class="page-item">
 	            	<c:choose>
 	            		<c:when test="${pageNum < maxPage}">
@@ -98,7 +97,7 @@
 	            	</c:choose>
 	            </li>
 			</ul>
-		</div>
+		</nav>
 	</section>
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
