@@ -38,19 +38,19 @@ public class Frontcontroller_sub extends HttpServlet {
     		forward.setRedirect(false);
     	} else if(command.equals("/sub_determine_st.sub")) {
     		forward = new ActionForward();
-    		if(session.getAttribute("sId") == null || session.getAttribute("sId") == "") {	//로그인안되있으면 *현재는 로그인폼이 없어 반대로 설정되어있음
+    		if(session.getAttribute("sId") == null || session.getAttribute("sId") == "") {	
     			System.out.println(session.getAttribute("sId"));
     			forward.setPath("member/mem_loginForm.jsp");
-    			forward.setRedirect(true);
+    			forward.setRedirect(false);
     		} else {									//로그인시
     			forward.setPath("subscribe/subType/sub_standard.jsp");
     			forward.setRedirect(false);
     		}
     	} else if(command.equals("/sub_determine_pre.sub")) {
     		forward = new ActionForward();
-    		if(session.getAttribute("sId") == null || session.getAttribute("sId") == "") {	//로그인안되있으면 *현재는 로그인폼이 없어 반대로 설정되어있음
+    		if(session.getAttribute("sId") == null || session.getAttribute("sId") == "") {	
     			forward.setPath("member/mem_loginForm.jsp");
-    			forward.setRedirect(true);
+    			forward.setRedirect(false);
     		} else {									//로그인시
     			forward.setPath("subscribe/subType/sub_premium.jsp");
     			forward.setRedirect(false);

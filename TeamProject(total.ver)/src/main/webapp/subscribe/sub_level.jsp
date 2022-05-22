@@ -24,7 +24,7 @@ html, body {
 		<div class="col-2"></div>
 	        <div class="col-4 text-center">
 				<div class="card">
-					<img src="../assets/box.png" alt="스탠다드패키지" class="card-img-top"/>
+					<img src="C:\Users\rudbe\git\ITwill_team\TeamProject(total.ver)\src\main\webapp\assets\premiumBox.png" alt="스탠다드패키지" class="card-img-top"/>
 					<div class="card-body">
 						<h5 class="card-title">스탠다드</h5>
 						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
@@ -35,7 +35,7 @@ html, body {
 	        </div>
 		<div class="col-4 text-center">
 			<div class="card">
-				<img src="box.png" alt="프리미엄패키지" class="card-img-top"/>
+				<img src="premiumBox.png" alt="프리미엄패키지" class="card-img-top"/>
 				<div class="card-body">
 					<h5 class="card-title">프리미엄</h5>
 					<p class="card-text">Lorem ipsum dolor sit amet, consectetur
