@@ -55,13 +55,9 @@ public class Frontcontroller_sub extends HttpServlet {
     			forward.setPath("subscribe/subType/sub_premium.jsp");
     			forward.setRedirect(false);
     		}
-    	} else if(command.equals("/sub_volume.sub")) {
+    	} else if(command.equals("/sub_order.sub")) {
     		forward = new ActionForward();
-    		forward.setPath("subscribe/sub_volume.jsp");
-    		forward.setRedirect(false);
-    	} else if(command.equals("/sub_destination.sub")) {
-    		forward = new ActionForward();
-    		forward.setPath("subscribe/sub_destination.jsp");
+    		forward.setPath("subscribe/sub_order.jsp");
     		forward.setRedirect(false);
     	}
     	

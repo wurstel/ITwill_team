@@ -9,7 +9,7 @@
 	crossorigin="anonymous">
 <head>
 <meta charset="UTF-8">
-<title>Bootstrap 4</title>
+<title></title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <style>
@@ -19,12 +19,13 @@ html, body {
 </style>
 </head>
 <body>
+<jsp:include page="../inc/header.jsp"/>  <!-- 헤더 들어가는 곳 -->
 <div class="container h-100">
 	<div class="row d-flex justify-content-center align-items-center h-100">
 		<div class="col-2"></div>
 	        <div class="col-4 text-center">
 				<div class="card">
-					<img src="C:\Users\rudbe\git\ITwill_team\TeamProject(total.ver)\src\main\webapp\assets\premiumBox.png" alt="스탠다드패키지" class="card-img-top"/>
+					<img src="./assets/standardBox.png" alt="스탠다드패키지" class="card-img-top"/>
 					<div class="card-body">
 						<h5 class="card-title">스탠다드</h5>
 						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
@@ -35,7 +36,7 @@ html, body {
 	        </div>
 		<div class="col-4 text-center">
 			<div class="card">
-				<img src="premiumBox.png" alt="프리미엄패키지" class="card-img-top"/>
+				<img src="./assets/premiumBox.png" alt="프리미엄패키지" class="card-img-top"/>
 				<div class="card-body">
 					<h5 class="card-title">프리미엄</h5>
 					<p class="card-text">Lorem ipsum dolor sit amet, consectetur
@@ -47,10 +48,8 @@ html, body {
 		<div class="col-2"></div>       
 	</div>
 </div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -121,7 +121,7 @@
 		</table>   	
     </div>
     <div class="container text-center">
-    	<button type="button" class="btn btn-outline-success btn-lg col-6">주문하기</button>
+    	<button type="button" class="btn btn-outline-success btn-lg col-6" onclick="location.href='payment.pm'">주문하기</button>
     </div>
 </div>
   <!-- /본문 -->
