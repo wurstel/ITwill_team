@@ -38,7 +38,7 @@
 			<tr><td>성별</td>		<td><input type="radio" value="남" name="gender" id="gender">남<input type="radio" value="여" name="gender" id="gender">여</td></tr>
 			<tr><td>이메일</td>	<td><input type="text" name="email" id="email">@<input type="text" name="domain" id="domain"></td>			<!-- 데이터 넘길떄 합쳐서 -->
 			<td>
-				<select onchange="selectDomain(this.value)" name="sDomain" id="sDomain">
+				<select  name="sDomain" id="sDomain">
 					<option value="">선택하세요</option>
 					<option value="naver.com">naver.com</option>
 					<option value="gmail.com">gmail.com</option>
@@ -46,7 +46,6 @@
 					<option value="daum.net">daum.net</option>
 					<option value="msn.com">msn.com</option>
 					<option value="outlook.com">outlook.com</option>
-					
 				</select>
 			</td>
 			</tr>

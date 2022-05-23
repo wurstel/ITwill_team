@@ -86,8 +86,8 @@
     <div class="container-fluid">
       <form action="">
       	<table class="table">
-			<tr><td>아이디</td><td>${sessionScope.sId }</td></tr>
-			<tr><td>이름</td><td></td></tr>
+			<tr><td>아이디</td><td>${memberDTO.mem_id }</td></tr>
+			<tr><td>이름</td><td>${memberDTO.mem_name }</td></tr>
 			<tr><td>생년월일</td><td></td></tr>
 			<tr><td>성별</td><td></td></tr>
 			<tr><td>email</td><td></td></tr>

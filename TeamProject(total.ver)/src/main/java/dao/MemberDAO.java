@@ -80,7 +80,7 @@ public class MemberDAO {
 	}
 
 	//회원가입여부확인
-	public boolean isMember(String id,String pass) {
+	public boolean isMember(String id,String pass) {		
 		boolean isMember = false;
 		
 		PreparedStatement pstmt = null;
@@ -103,6 +103,68 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		return isMember;
+	}
+
+	
+	//회원정보 받아오기
+	public MemberDTO getMemberInfo(String id) {			
+		MemberDTO memberDTO = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT * FROM member WHERE mem_id=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberDTO = new MemberDTO();
+				memberDTO.setMem_id(rs.getString(1));
+				memberDTO.setMem_password(rs.getString(2));
+				memberDTO.setMem_name(rs.getString(3));
+				memberDTO.setMem_birth(rs.getString(4));
+				memberDTO.setMem_gender(rs.getString(5));
+				memberDTO.setMem_email(rs.getString(6));
+				memberDTO.setMem_phoneNum(rs.getString(7));
+				memberDTO.setMem_postcode(rs.getString(8));
+				memberDTO.setMem_address(rs.getString(9));
+				memberDTO.setMem_grade(rs.getString(10));
+				memberDTO.setMem_point(rs.getString(11));
+				memberDTO.setMem_paymethod(rs.getString(12));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return memberDTO;
+	}
+
+	//회원정보 수정
+	public int memInfoEdit(String id, String email, String phoneNum, String address, String postcode) {
+		int memInfoEditSuccess = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE member SET mem_email=?,mem_phoneNum=?,mem_address=?, mem_postcode=? WHERE mem_id=?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, phoneNum);
+			pstmt.setString(3, address);
+			pstmt.setString(4, postcode);
+			pstmt.setString(5, id);
+			memInfoEditSuccess = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return memInfoEditSuccess;
 	}
 
 

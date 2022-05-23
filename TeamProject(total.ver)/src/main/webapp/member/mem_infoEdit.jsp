@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="js/joinFunc.js"></script>
+<script src="js/jquery-3.6.0.js"></script>
 <style>
   /* 사이드바 래퍼 스타일 */
   
@@ -84,19 +87,31 @@
   <!-- 본문 -->
   <div id="page-content-wrapper">
     <div class="container-fluid">
-      <form action="">
-      	<table class="table">
-			<tr><td>아이디</td><td>${sessionScope.sId }</td></tr>
-			<tr><td>이름</td><td><input type="text" class=""></td></tr>
-			<tr><td>생년월일</td><td><input type="text" class=""></td></tr>
-			<tr><td>성별</td><td><input type="text" class=""></td></tr>
-			<tr><td>email</td><td><input type="text" class=""></td></tr>
-			<tr><td>전화번호</td><td><input type="text" class=""></td></tr>
-			<tr><td>주소</td><td><input type="text" class=""></td></tr>
-			<tr><td>멤버쉽등급</td><td><input type="text" class=""></td></tr>
+      <form action="memInfoEditPro.me" name="fr" id="fr">
+      	<table class="table" >
+			<tr><td>아이디</td><td>${memberDTO.mem_id }</td></tr>
+			<tr><td>이름</td><td>${memberDTO.mem_name }</td></tr>
+			<tr><td>생년월일</td><td>${memberDTO.mem_birth }</td></tr>
+			<tr><td>성별</td><td>${memberDTO.mem_gender }</td></tr>
+			<tr><td>email</td><td><input type="text" name="mem_email">@<input type="text" name="domain" id="domain">
+					<select onchange="selectDomain(this.value)" name="sDomain" id="sDomain">
+						<option value="">선택하세요</option>
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="nate.com">nate.com</option>
+						<option value="daum.net">daum.net</option>
+						<option value="msn.com">msn.com</option>
+						<option value="outlook.com">outlook.com</option>
+					</select>
+			</td>
+			</tr>
+			<tr><td>전화번호</td><td><input type="text" name="phone" id="phone"onblur="checkPhone(this.value)"></td></tr>
+			<tr><td rowspan="2">주소</td><td><input type="text" name="postcode" id="postcode"><input type="button" value="주소검색" onclick="postCodeSearch()"></td></tr>
+			<tr><td><input type="text" name="address" id="address"><input type="text" name="add_detail" id="add_detail" placeholder="상세주소 입력"></td></tr>
+			<tr><td>멤버쉽등급</td><td>${memberDTO.mem_grade }</td></tr>
       	</table>
-      </form>
       	<button type="submit" class="btn btn-secondary">수정하기</button>
+      </form>
     </div>
   </div>
   <!-- /본문 -->
