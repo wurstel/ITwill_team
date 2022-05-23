@@ -89,28 +89,46 @@
     </div>
     <div class="container">
 		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">상품</th>
-					<th scope="col">가격</th>
-					<th scope="col">수량</th>
-					<th scope="col">주문금액</th>
-					<th scope="col">비고</th>
-				</tr>
-			</thead>
-			<tbody>
-			<!--  주문목록  -->
-<%-- 				<c:forEach items="" var=""> --%>
-			    <tr>
-			      <td>1</td>
-			      <td></td>
-			      <td></td>
-			      <td></td>
-			      <td></td>
-			    </tr>
-<%-- 				</c:forEach> --%>
-			<!-- /주문목록  -->    
-			</tbody>
+			<c:choose>
+			<c:when test="${empty comment }">
+				<thead>
+					<tr>
+						<th scope="col">상품</th>
+						<th scope="col">가격</th>
+						<th scope="col">수량</th>
+						<th scope="col">주문금액</th>
+						<th scope="col">비고</th>
+					</tr>
+				</thead>
+				<tbody>
+				<!--  주문목록  -->
+					<c:forEach items="${list }" var="oc">
+				    <tr>
+				      <td>${oc.pd_name }</td>
+				      <td>${oc.pd_price }</td>
+				      <td>${oc.od_qty }</td>
+				      <td>${oc.totalprice }</td>
+				      <td>${oc.order_status }</td>
+				    </tr>
+					</c:forEach>
+				<!-- /주문목록  -->    
+				</tbody>
+			</c:when>
+			<c:otherwise>
+				<thead>
+					<tr>
+						<th scope="col">상품</th>
+						<th scope="col">가격</th>
+						<th scope="col">수량</th>
+						<th scope="col">주문금액</th>
+						<th scope="col">비고</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td colspan="5" class="text-center">${comment }</td></tr>
+				</tbody>
+			</c:otherwise>
+			</c:choose>
 		</table>   	
     </div>
 </div>

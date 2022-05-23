@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import vo.MemberDTO;
+import vo.Order_checkDTO;
 
 import static db.jdbcUtil.*;
 
@@ -165,6 +167,68 @@ public class MemberDAO {
 		}
 		
 		return memInfoEditSuccess;
+	}
+
+	//주문내역 확인
+	public String isInquiry(String id) {
+
+		String isInquiry = "";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT RESULT, CASE WHEN RESULT=0 THEN '주문내역이 없습니다' END AS COMMENT"
+				+ " FROM (SELECT COUNT(*) AS RESULT FROM ORDER_CHECK WHERE order_mem_id=?) A";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString("COMMENT") == null) {		//주문내역이 있는경우
+					isInquiry = null;
+				} else {									//주문내역이 없는경우
+					isInquiry = rs.getString("COMMENT");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return isInquiry;
+	}
+	
+	//주문내역 불러오기
+	public ArrayList<Order_checkDTO> loadInquiry(String id) {
+		ArrayList<Order_checkDTO> list = null;
+		Order_checkDTO order_checkDTO = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql ="SELECT * FROM order_check WHERE order_mem_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Order_checkDTO>();
+			while(rs.next()) {
+				order_checkDTO = new Order_checkDTO();
+				order_checkDTO.setMem_id(rs.getString(1));
+				order_checkDTO.setPd_name(rs.getString(2));
+				order_checkDTO.setPd_price(rs.getString(3));
+				order_checkDTO.setOd_qty(rs.getString(4));
+				order_checkDTO.setTotalprice(rs.getString(5));
+				order_checkDTO.setOrder_status(rs.getString(6));
+				
+				list.add(order_checkDTO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 
 

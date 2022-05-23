@@ -16,6 +16,7 @@ import action.MemInfoEditProAction;
 import action.MemberCheckIdDuplicateAction;
 import action.MemberLoginProAction;
 import action.MemberLogoutAction;
+import action.InquiryAction;
 import action.MemberJoinAction;
 import vo.ActionForward;
 
@@ -91,7 +92,6 @@ public class Frontcontroller_me extends HttpServlet {
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}else if(command.equals("/basket.me")) {	//장바구니로 이동
@@ -103,7 +103,6 @@ public class Frontcontroller_me extends HttpServlet {
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}else if(command.equals("/memInfoEditPro.me")) {	//회원정보 변경작업
@@ -111,13 +110,15 @@ public class Frontcontroller_me extends HttpServlet {
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     	}else if(command.equals("/inquiry.me")) {		//주문조회로 이동
-    		forward = new ActionForward();
-    		forward.setPath("member/mem_orderInquiry.jsp");
-    		forward.setRedirect(false);
+    		action = new InquiryAction();
+    		try {
+				forward= action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     	}else if(command.equals("/adminpage.me")) {		//관리자페이지로  이동
     		forward = new ActionForward();
     		forward.setPath("admin/adminDashboard.jsp");
