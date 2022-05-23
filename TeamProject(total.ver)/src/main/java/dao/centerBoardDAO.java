@@ -195,11 +195,13 @@ public class centerBoardDAO {
 			pstmt2.setInt(2, article.getQna_re_seq()); // 순서번호
 			pstmt2.executeUpdate();
 			
-			sql = "INSERT INTO qna VALUES (?,?,?,?,?,?,?,?)";
+			sql = "INSERT INTO qna VALUES (?,?,?,?,?,?,?,?,now())";
 			pstmt2 = con.prepareStatement(sql);
 			pstmt2.setInt(1, num); // 새 글 번호
-			pstmt2.setString(2, article.getQna_title());
-			pstmt2.setString(3, article.getQna_content());
+			pstmt2.setString(2, article.getQna_mem_id());
+			pstmt2.setString(3, article.getQna_pass());
+			pstmt2.setString(4, article.getQna_title());
+			pstmt2.setString(5, article.getQna_content());
 			pstmt2.setInt(6, article.getQna_re_ref());
 			pstmt2.setInt(7, article.getQna_re_lev() + 1);
 			pstmt2.setInt(8, article.getQna_re_seq() + 1);

@@ -19,7 +19,7 @@ public class QNAReplyProAction implements Action {
 		article.setQna_num(Integer.parseInt(request.getParameter("qna_num")));
 		article.setQna_mem_id(request.getParameter("qna_mem_id"));
 		article.setQna_pass(request.getParameter("qna_pass"));
-		article.setQna_title(request.getParameter("qna_subject"));
+		article.setQna_title(request.getParameter("qna_title"));
 		article.setQna_content(request.getParameter("qna_content"));
 		article.setQna_re_ref(Integer.parseInt(request.getParameter("qna_re_ref")));
 		article.setQna_re_lev(Integer.parseInt(request.getParameter("qna_re_lev")));
