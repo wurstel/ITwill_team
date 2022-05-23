@@ -42,7 +42,6 @@
 					<td scope="row" style="text-align: center; vertical-align: middle;">${board.getQna_num() }</td>
 					<td id="subject" scope="row" style="text-align: center; vertical-align: middle;">
 						<a href="QNADetail.cu?qna_num=${board.getQna_num() }&page=${pageNum}" style="text-decoration: none;">
-							<!-- 답글에 대한 들여쓰기(공백 추가) 작업 처리 -->
 							${board.getQna_title() }
 						</a>
 					</td>
