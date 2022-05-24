@@ -154,6 +154,14 @@
                     </div>
                     <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
                         <div class="card">
+                            <h5 class="card-header">매출 현황</h5>
+                            <div class="card-body">
+                                <div id="traffic-chart"></div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+                        <div class="card">
                             <h5 class="card-header">Traffic</h5>
                             <div class="card-body">
                               <h5 class="card-title">64k</h5>
@@ -161,10 +169,10 @@
                               <p class="card-text text-success">2.5% increase since last month</p>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row">
-                    <div class="col-12 col-xl-8 mb-4 mb-lg-0">
+                    <div class="col-12 col-xl-12 mb-4 mb-lg-0">
                         <div class="card">
                             <h5 class="card-header">주문 현황</h5>
                             <div class="card-body">
@@ -177,7 +185,7 @@
                                             <th scope="col">주문자</th>
                                             <th scope="col">총 금액</th>
                                             <th scope="col">주문일</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">상세보기</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -236,14 +244,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-xl-4">
+                    <!-- <div class="col-12 col-xl-4">
                         <div class="card">
                             <h5 class="card-header">매출 현황</h5>
                             <div class="card-body">
                                 <div id="traffic-chart"></div>
                             </div>                            
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <footer class="pt-5 d-flex justify-content-between">
                     <span>Copyright © 2019-2020 <a href="https://themesberg.com">Themesberg</a></span>
