@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.BasketAction;
 import action.MemInfoAction;
 import action.MemInfoEditAction;
 import action.MemInfoEditProAction;
@@ -95,9 +96,12 @@ public class Frontcontroller_me extends HttpServlet {
 				e.printStackTrace();
 			}
     	}else if(command.equals("/basket.me")) {	//장바구니로 이동
-    		forward = new ActionForward();
-    		forward.setPath("member/mem_basket.jsp");
-    		forward.setRedirect(false);
+    		action = new BasketAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     	}else if(command.equals("/memInfoEdit.me")) {	//회원정보 변경으로 이동
     		action = new MemInfoEditAction();
     		try {

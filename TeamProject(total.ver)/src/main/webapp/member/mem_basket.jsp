@@ -98,26 +98,33 @@
 					<th scope="col">비고</th>
 				</tr>
 			</thead>
-			<tbody>
-			<!-- 장바구니 목록  -->
-<%-- 				<c:forEach items="" var=""> --%>
-			    <tr>
-			      <td>1</td>
-			      <td>Mark</td>
-			      <td>Otto</td>
-			      <td>@mdo</td>
-			      <td><button type="button" class="btn btn-danger btn-sm">삭제하기</button></td>
-			    </tr>
-<%-- 				</c:forEach> --%>
-			<!-- /장바구니 목록  -->    
-			    <tr>
-			      <td scope="row"></td>
-			      <td></td>
-			      <td></td>
-			      <td>총 결제금액</td>
-			      <td><!-- 코드로 합계를 나타내서 표현 --></td>
-			    </tr>
-			</tbody>
+			<c:choose>
+				<c:when test="${empty basketlist }">
+					<tr><td colspan="5" class="text-center">장바구니가 비었습니다</td></tr>
+				</c:when>
+				<c:otherwise>
+					<tbody>
+					<!-- 장바구니 목록  -->
+						<c:forEach items="${basketlist }" var="basketlist">
+					    <tr>
+					      <td>${basketlist.pd_name }</td>
+					      <td>${basketlist.pd_price }</td>
+					      <td>${basketlist.bk_qty }</td>
+					      <td>${basketlist.totalprice }</td>
+					      <td><button type="button" class="btn btn-danger btn-sm">삭제하기</button></td>
+					    </tr>
+						</c:forEach>
+					<!-- /장바구니 목록  -->    
+					    <tr>
+					      <td scope="row"></td>
+					      <td></td>
+					      <td></td>
+					      <td>총 결제금액</td>
+					      <td><!-- 코드로 합계를 나타내서 표현 --></td>
+					    </tr>
+					</tbody>
+				</c:otherwise>
+			</c:choose>
 		</table>   	
     </div>
     <div class="container text-center">
