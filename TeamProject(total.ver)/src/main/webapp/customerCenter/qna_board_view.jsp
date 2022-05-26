@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"></jsp:include>
-	<div class="container" style="margin-top: 20px;">
+	<div class="container" style="margin-top: 100px;">
 		<div class="row">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 				<thead>
