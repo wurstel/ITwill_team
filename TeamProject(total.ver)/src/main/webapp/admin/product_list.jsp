@@ -1,78 +1,132 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
-	<head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Dashboard - SB Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/styles_ad_pr.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    </head>
-    
-    <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">관리자페이지</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">상품관리</div>
-                            <a class="nav-link" href="./ProductRegisterForm.ad">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                상품등록
-                            </a>
-                            <a class="nav-link" href="./ProductList.ad">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                상품목록
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer"></div>
-                </nav>
-            </div>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">상품관리</h1>
-                    </div>
-                    <c:set var="pageNum" value="${pageInfo.getPageNum() }" />
-					<c:set var="maxPage" value="${pageInfo.getMaxPage() }" />
-					<c:set var="startPage" value="${pageInfo.getStartPage() }" />
-					<c:set var="endPage" value="${pageInfo.getEndPage() }" />
-					<c:set var="listCount" value="${pageInfo.getListCount() }" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Simple Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="css/styles_ad_pr.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 90px 0 0;
+            box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+            z-index: 99;
+        }
 
-	<!-- 게시판 리스트 -->
-					<section id="listForm">
+        @media (max-width: 767.98px) {
+            .sidebar {
+                top: 11.5rem;
+                padding: 0;
+            }
+        }
+            
+        .navbar {
+            box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .1);
+        }
+
+        @media (min-width: 767.98px) {
+            .navbar {
+                top: 0;
+                position: sticky;
+                z-index: 999;
+            }
+        }
+
+        .sidebar .nav-link {
+            color: #333;
+        }
+
+        .sidebar .nav-link.active {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <jsp:include page="../inc/header.jsp"></jsp:include>
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="main.jsp">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <span class="ml-2">메인페이지</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="ProductList.ad">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                            <span class="ml-2">상품관리</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            <span class="ml-2">주문관리</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <span class="ml-2">회원관리</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="CustomerCenter.cu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart-2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                            <span class="ml-2">고객센터</span>
+                          </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                            <span class="ml-2">매출관리</span>
+                          </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="btn btn-sm btn-secondary ml-3 mt-2" href="https://themesberg.com/blog/bootstrap/simple-bootstrap-5-dashboard-tutorial">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-book" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M1 2.828v9.923c.918-.35 2.107-.692 3.287-.81 1.094-.111 2.278-.039 3.213.492V2.687c-.654-.689-1.782-.886-3.112-.752-1.234.124-2.503.523-3.388.893zm7.5-.141v9.746c.935-.53 2.12-.603 3.213-.493 1.18.12 2.37.461 3.287.811V2.828c-.885-.37-2.154-.769-3.388-.893-1.33-.134-2.458.063-3.112.752zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+                                </svg>
+                                <span class="ml-2">Read tutorial</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-sm btn-warning ml-3 mt-2" href="https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard">
+                                ⚡︎ Volt Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-sm btn-primary ml-3 mt-2" href="https://themesberg.com">
+                                By Themesberg ❤️
+                            </a>
+                        </li> 필요할 때 다시살리기 사이드바 버튼--> 
+                      </ul>
+                </div>
+            </nav>
+			<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">상품관리</h1>
+				</div>
+				<c:set var="pageNum" value="${pageInfo.getPageNum() }" />
+				<c:set var="maxPage" value="${pageInfo.getMaxPage() }" />
+				<c:set var="startPage" value="${pageInfo.getStartPage() }" />
+				<c:set var="endPage" value="${pageInfo.getEndPage() }" />
+				<c:set var="listCount" value="${pageInfo.getListCount() }" />
+
+				<!-- 게시판 리스트 -->
+				<section id="listForm">
 					<h2>상품 목록</h2>
 					<table>
 						<tr id="tr_top">
@@ -81,10 +135,12 @@
 							<td width="150px">상품명</td>
 							<td width="100px">가격</td>
 							<td width="200px">상품상세</td>
+							<td width="200px">비고</td>
 						</tr>
 						<!-- JSTL 의 c:forEach 태그를 사용하여 articleList 에서 BoardDTO 객체를 꺼내서 내용 출력 -->
 						<!-- 단, 게시물 목록이 하나라도 존재할 경우에만 출력 c:if 태그 사용 -->
-						<c:if test="${not empty productList and pageInfo.getListCount() > 0}">
+						<c:if
+							test="${not empty productList and pageInfo.getListCount() > 0}">
 							<c:forEach var="product" items="${productList }">
 								<tr>
 									<td>${product.getPd_code() }</td>
@@ -92,63 +148,68 @@
 									<td>${product.getPd_name() }</td>
 									<td>${product.getPd_price() }</td>
 									<td>${product.getPd_detail() }</td>
+									<td>
+										<button type="button" class="btn btn-outline-success btn-sm" onclick="location.href='ProductRegisterForm.ad'">등록하기</button>
+										<button type="button" class="btn btn-outline-danger btn-sm">삭제하기</button>
+									</td>
 								</tr>
 							</c:forEach>
 						</c:if>
 					</table>
-					</section>
-					<section id="buttonArea">
-						<input type="button" value="상품등록" onclick="location.href='ProductRegisterForm.ad'" />
-					</section>
-					<section id="pageList">
+				</section>
+				<section id="pageList">
+					<c:choose>
+						<c:when test="${pageNum > 1}">
+							<input type="button" value="이전"
+								onclick="location.href='ProductList.ad?page=${pageNum - 1}'">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="이전">
+						</c:otherwise>
+					</c:choose>
+
+					<!-- 페이지 번호 목록은 시작 페이지(startPage)부터 끝 페이지(endPage) 까지 표시 -->
+					<c:forEach var="i" begin="${startPage }" end="${endPage }">
+						<!-- 단, 현재 페이지 번호는 링크 없이 표시 -->
 						<c:choose>
-							<c:when test="${pageNum > 1}">
-								<input type="button" value="이전" onclick="location.href='ProductList.ad?page=${pageNum - 1}'">
-							</c:when>
-							<c:otherwise>
-								<input type="button" value="이전">
-							</c:otherwise>
-						</c:choose>
-							
-						<!-- 페이지 번호 목록은 시작 페이지(startPage)부터 끝 페이지(endPage) 까지 표시 -->
-						<c:forEach var="i" begin="${startPage }" end="${endPage }">
-							<!-- 단, 현재 페이지 번호는 링크 없이 표시 -->
-							<c:choose>
-								<c:when test="${pageNum eq i}">
+							<c:when test="${pageNum eq i}">
 									${i }
 								</c:when>
-								<c:otherwise>
-									<a href="BoardList.bo?page=${i }">${i }</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-				
-						<!-- 현재 페이지 번호(pageNum)가 총 페이지 수보다 작을 때만 [다음] 링크 동작 -->
-						<c:choose>
-							<c:when test="${pageNum < maxPage}">
-								<input type="button" value="다음" onclick="location.href='ProductList.ad?page=${pageNum + 1}'">
-							</c:when>
 							<c:otherwise>
-								<input type="button" value="다음">
+								<a href="BoardList.bo?page=${i }">${i }</a>
 							</c:otherwise>
 						</c:choose>
-					</section>					
-                </main>
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts_ad_pr.js"></script>
-    </body>
+					</c:forEach>
+
+					<!-- 현재 페이지 번호(pageNum)가 총 페이지 수보다 작을 때만 [다음] 링크 동작 -->
+					<c:choose>
+						<c:when test="${pageNum < maxPage}">
+							<input type="button" value="다음"
+								onclick="location.href='ProductList.ad?page=${pageNum + 1}'">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="다음">
+						</c:otherwise>
+					</c:choose>
+				</section>
+			</main>
+		</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        new Chartist.Line('#traffic-chart', {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat','Sun'],
+            series: [
+                [23000, 25000, 19000, 34000, 56000, 64000,80000]
+            ]
+            }, {
+            low: 0,
+            showArea: true
+        });        
+    </script>
+</body>
 </html>

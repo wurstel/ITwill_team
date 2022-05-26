@@ -12,7 +12,7 @@
 
 </head>
 <body id="headerBody">
-	<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="position: fixed; top: 0; width: 100%;">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-fixed-top"" >
     <a class="navbar-brand" href="main.jsp">subscribeProject</a>
     <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
             data-target="#navbarNav">
