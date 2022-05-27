@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap 5 Simple Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="css/styles_ad_pr.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
     <style>
@@ -74,7 +77,7 @@
                           </a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">
+                          <a class="nav-link" href="memberManage.ad">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             <span class="ml-2">회원관리</span>
                           </a>
@@ -112,163 +115,84 @@
                       </ul>
                 </div>
             </nav>
-            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
-                <!-- <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Overview</li>
-                    </ol>
-                </nav> -->
-                <h1 class="h2">관리자 대쉬보드</h1>
-                <p>해당 페이지에서 여러가지 관리를 수행할 수 있습니다.</p>
-                <div class="row my-4">
-                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                        <div class="card">
-                            <h5 class="card-header">최근 리뷰</h5>
-                            <div class="card-body">
-                              <h5 class="card-title">제목 : 상품이 마음에들어요</h5>
-                              <p class="card-text">구매상품 : 술</p>
-                              <p class="card-text text-success">2022/05/09</p>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">회원수</h5>
-                            <div class="card-body">
-                              <h5 class="card-title">XX명</h5>
-                              <p class="card-text">Feb 1 - Apr 1, United States</p>
-                              <p class="card-text text-success">4.6% increase since last month</p>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">Purchases</h5>
-                            <div class="card-body">
-                              <h5 class="card-title">43</h5>
-                              <p class="card-text">Feb 1 - Apr 1, United States</p>
-                              <p class="card-text text-danger">2.6% decrease since last month</p>
-                            </div>
-                          </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">매출 현황</h5>
-                            <div class="card-body">
-                                <div id="traffic-chart"></div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <!-- <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">Traffic</h5>
-                            <div class="card-body">
-                              <h5 class="card-title">64k</h5>
-                              <p class="card-text">Feb 1 - Apr 1, United States</p>
-                              <p class="card-text text-success">2.5% increase since last month</p>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="row">
-                    <div class="col-12 col-xl-12 mb-4 mb-lg-0">
-                        <div class="card">
-                            <h5 class="card-header">주문 현황</h5>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col">주문번호</th>
-                                            <th scope="col">구매 상품</th>
-                                            <th scope="col">주문자</th>
-                                            <th scope="col">총 금액</th>
-                                            <th scope="col">주문일</th>
-                                            <th scope="col">상세보기</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>€61.11</td>
-                                            <td>Aug 31 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>$153.11</td>
-                                            <td>Aug 28 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>€61.11</td>
-                                            <td>Aug 31 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>$153.11</td>
-                                            <td>Aug 28 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17371705</th>
-                                            <td>Volt Premium Bootstrap 5 Dashboard</td>
-                                            <td>johndoe@gmail.com</td>
-                                            <td>€61.11</td>
-                                            <td>Aug 31 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">17370540</th>
-                                            <td>Pixel Pro Premium Bootstrap UI Kit</td>
-                                            <td>jacob.monroe@company.com</td>
-                                            <td>$153.11</td>
-                                            <td>Aug 28 2020</td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                </div>
-                                <a href="#" class="btn btn-block btn-light">View all</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-12 col-xl-4">
-                        <div class="card">
-                            <h5 class="card-header">매출 현황</h5>
-                            <div class="card-body">
-                                <div id="traffic-chart"></div>
-                            </div>                            
-                        </div>
-                    </div> -->
-                </div>
-                <footer class="pt-5 d-flex justify-content-between">
-                    <span>Copyright © 2019-2020 <a href="https://themesberg.com">Themesberg</a></span>
-                    <ul class="nav m-0">
-                        <li class="nav-item">
-                          <a class="nav-link text-secondary" aria-current="page" href="#">Privacy Policy</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link text-secondary" href="#">Terms and conditions</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link text-secondary" href="#">Contact</a>
-                        </li>
-                      </ul>
-                </footer>
-            </main>
-        </div>
+			<main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">회원관리</h1>
+				</div>
+				<c:set var="pageNum" value="${pageInfo.getPageNum() }" />
+				<c:set var="maxPage" value="${pageInfo.getMaxPage() }" />
+				<c:set var="startPage" value="${pageInfo.getStartPage() }" />
+				<c:set var="endPage" value="${pageInfo.getEndPage() }" />
+				<c:set var="listCount" value="${pageInfo.getListCount() }" />
+
+				<!-- 게시판 리스트 -->
+				<section id="listForm">
+					<h2>회원 목록</h2>
+					<table>
+						<tr id="tr_top">
+							<td width="100px">아이디</td>
+							<td width="100px">회원이름</td>
+							<td width="150px">생년월일</td>
+							<td width="100px">성별</td>
+							<td width="200px">이메일</td>
+							<td width="200px">전화번호</td>
+							<td width="200px">주소</td>
+							<td width="200px">비고</td>
+						</tr>
+						<!-- 단, 게시물 목록이 하나라도 존재할 경우에만 출력 c:if 태그 사용 -->
+						<c:if test="${pageInfo.getListCount() > 0 && not empty memberList }">
+							<c:forEach var="member" items="${memberList }">
+								<tr class="text-center">
+									<td>${member.mem_id }</td>
+									<td>${member.mem_name }</td>
+									<td>${member.mem_birth }</td>
+									<td>${member.mem_gender }</td>
+									<td>${member.mem_email }</td>
+									<td>${member.mem_phoneNum }</td>
+									<td>${member.mem_address }</td>
+									<td><button type="button" class="btn btn-outline-danger btn-sm">삭제하기</button></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</table>
+				</section>
+				<section id="pageList">
+					<c:choose>
+						<c:when test="${pageNum > 1}">
+							<input type="button" value="이전"
+								onclick="location.href='ProductList.ad?page=${pageNum - 1}'">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="이전">
+						</c:otherwise>
+					</c:choose>
+
+					<!-- 페이지 번호 목록은 시작 페이지(startPage)부터 끝 페이지(endPage) 까지 표시 -->
+					<c:forEach var="i" begin="${startPage }" end="${endPage }">
+						<!-- 단, 현재 페이지 번호는 링크 없이 표시 -->
+						<c:choose>
+							<c:when test="${pageNum eq i}">
+									${i }
+								</c:when>
+							<c:otherwise>
+								<a href="BoardList.bo?page=${i }">${i }</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+
+					<!-- 현재 페이지 번호(pageNum)가 총 페이지 수보다 작을 때만 [다음] 링크 동작 -->
+					<c:choose>
+						<c:when test="${pageNum < maxPage}">
+							<input type="button" value="다음"
+								onclick="location.href='ProductList.ad?page=${pageNum + 1}'">
+						</c:when>
+						<c:otherwise>
+							<input type="button" value="다음">
+						</c:otherwise>
+					</c:choose>
+				</section>
+			</main>
+		</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
