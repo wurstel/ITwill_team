@@ -231,7 +231,8 @@ public class MemberDAO {
 		
 		return list;
 	}
-
+	
+	//장바구니 리스트 불러오기
 	public ArrayList<BasketListDTO> basketlist(String id) {
 		ArrayList<BasketListDTO> basketlist = null;
 		BasketListDTO basketListDTO = null;
@@ -266,9 +267,82 @@ public class MemberDAO {
 		return basketlist;
 	}
 
+	//회원정보 불러오기
+	public ArrayList<MemberDTO> loadMember(int pageNum, int listLimit) {
 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<MemberDTO> memberList = null;
+		MemberDTO memberDTO = null;
+		int startRow = (pageNum - 1) * listLimit;
+		
+		String sql = "SELECT * FROM member LIMIT ?,?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, listLimit);
+			rs = pstmt.executeQuery();
+			memberList = new ArrayList<MemberDTO>();
+			
+			while(rs.next()) {
+				memberDTO = new MemberDTO(); 
+				memberDTO.setMem_id(rs.getString(1));
+				memberDTO.setMem_password(rs.getString(2));
+				memberDTO.setMem_name(rs.getString(3));
+				memberDTO.setMem_birth(rs.getString(4));
+				memberDTO.setMem_gender(rs.getString(5));
+				memberDTO.setMem_email(rs.getString(6));
+				memberDTO.setMem_phoneNum(rs.getString(7));
+				memberDTO.setMem_postcode(rs.getString(8));
+				memberDTO.setMem_address(rs.getString(9));
+				memberDTO.setMem_grade(rs.getString(10));
+				memberDTO.setMem_point(rs.getString(11));
+				memberDTO.setMem_paymethod(rs.getString(12));
+				
+				memberList.add(memberDTO);
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
 
+		
+		
+		
+		return memberList;
+	}
 
+	//페이징처리
+	public int selectListCount() {
+		int listCount = 0;
+				
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			String sql = "SELECT COUNT(*) FROM member";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 구문 오류 발생! - selectListCount()");
+			e.printStackTrace();
+		} finally {
+			// DB 자원 반환(주의! Connection 객체 반환 금지!)
+			close(pstmt);
+			close(rs);
+		}
+		
+		return listCount;
+		
+	}
 }
 
 

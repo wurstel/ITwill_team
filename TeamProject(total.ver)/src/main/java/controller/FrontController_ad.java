@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.CustomerCenterAction;
+import action.CustomerCenterAdminAction;
+import action.MemberManageAction;
 import action.ProductListAction;
 import action.ProductRegisterProAction;
 import vo.ActionForward;
@@ -54,7 +57,23 @@ public class FrontController_ad extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}  
+		} else if(command.equals("/memberManage.ad")) {
+			action = new MemberManageAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/CustomerCenter.ad")) {
+			action = new CustomerCenterAdminAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 //		  else if(command.equals("/ProdcutDetail.ad")) {
 //			// 비즈니스 로직 처리를 위해 BoardDetailAction 클래스의 execute() 메서드 호출
 //			action = new ProductDetailAction();
