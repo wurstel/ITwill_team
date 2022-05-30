@@ -13,13 +13,13 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript">
 	var IMP = window.IMP; // 생략 가능
-	IMP.init("imp74403648"); // 예: imp00000000 가맹점 식별코드
+	IMP.init("imp74403648"); // https://admin.iamport.kr/settings#tab_profile 가맹점 식별코드
 	
 	function kakaoPay() {
 	  
     // IMP.request_pay(param, callback) 결제창 호출
     IMP.request_pay({ // param
-        pg: 'kakaopay', // 결제할 pg사
+        pg: 'kakaopay', // 결제할 pg사 간편결제 카카오페이 테스트모드 ON 가맹점코드 일반결제용
         pay_method: 'card',
         merchant_uid: 'merchant_'+new Date().getTime(), // 주문번호
         name: '파댕이', // 상품명
@@ -51,7 +51,9 @@
 		  
 	    // IMP.request_pay(param, callback) 결제창 호출
 	    IMP.request_pay({ // param
-	        pg: 'tosspay', // 결제할 pg사
+	        pg: 'tosspay', // 결제할 pg사 간편결제 토스
+	        // PG 상점 아이디 tosstest
+	        // apikey sk_test_w5lNQylNqa5lNQe013Nq
 	        pay_method: 'card',
 	        merchant_uid: 'merchant_'+new Date().getTime(), // 주문번호
 	        name: '파댕이', // 상품명
