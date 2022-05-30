@@ -11,6 +11,7 @@ public class BasketListDTO {
 	private String totalprice;
 	private String bk_order_num;
 	private String bk_mem_id;
+	private String bk_pd_code;
 	
 	
 	public String getPd_name() {
@@ -49,12 +50,20 @@ public class BasketListDTO {
 	public void setBk_mem_id(String bk_mem_id) {
 		this.bk_mem_id = bk_mem_id;
 	}
+	public String getBk_pd_code() {
+		return bk_pd_code;
+	}
+	public void setBk_pd_code(String bk_pd_code) {
+		this.bk_pd_code = bk_pd_code;
+	}
 	
 	@Override
 	public String toString() {
 		return "BasketListDTO [pd_name=" + pd_name + ", pd_price=" + pd_price + ", bk_qty=" + bk_qty + ", totalprice="
-				+ totalprice + ", bk_order_num=" + bk_order_num + ", bk_mem_id=" + bk_mem_id + "]";
+				+ totalprice + ", bk_order_num=" + bk_order_num + ", bk_mem_id=" + bk_mem_id + ", bk_pd_code="
+				+ bk_pd_code + "]";
 	}
+
 	
 	
 	

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.BasketAction;
+import action.BasketUpdateAction;
 import action.MemInfoAction;
 import action.MemInfoEditAction;
 import action.MemInfoEditProAction;
@@ -97,6 +98,13 @@ public class Frontcontroller_me extends HttpServlet {
 			}
     	}else if(command.equals("/basket.me")) {	//장바구니로 이동
     		action = new BasketAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    	}else if(command.equals("/basketUpdate.me")) {	//장바구니로 이동
+    		action = new BasketUpdateAction();
     		try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

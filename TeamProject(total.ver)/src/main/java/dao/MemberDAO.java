@@ -253,6 +253,7 @@ public class MemberDAO {
 				basketListDTO.setTotalprice(rs.getString(4));
 				basketListDTO.setBk_order_num(rs.getString(5));
 				basketListDTO.setBk_mem_id(rs.getString(6));
+				basketListDTO.setBk_pd_code(rs.getString(7));
 				
 				basketlist.add(basketListDTO);
 				
@@ -342,6 +343,28 @@ public class MemberDAO {
 		
 		return listCount;
 		
+	}
+
+	//장바구니 수량 변경
+	public int qtyUpdate(String bk_qty, String bk_mem_id, String bk_order_num, String bk_pd_code) {
+		int updateSuccess = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE BASKET SET bk_qty=? WHERE bk_mem_id=? AND bk_order_num=? AND bk_pd_code=? ";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, bk_qty);
+			pstmt.setString(2, bk_mem_id);
+			pstmt.setString(3, bk_order_num);
+			pstmt.setString(4, bk_pd_code);
+			updateSuccess=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return updateSuccess;
 	}
 }
 
