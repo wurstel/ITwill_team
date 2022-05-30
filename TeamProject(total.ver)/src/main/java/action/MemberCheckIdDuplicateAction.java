@@ -13,13 +13,13 @@ public class MemberCheckIdDuplicateAction implements Action {
 		System.out.println("MemberCheckIdDuplicateAction");
 		ActionForward forward = null;
 		
-		String id = request.getParameter("id");
+		String id = request.getParameter("mem_id");
 
 		MemberCheckIdDuplicateService service = new MemberCheckIdDuplicateService();
 		boolean isDuplicate = service.isDuplicateId(id);
 		
 		forward = new ActionForward();
-		forward.setPath("MemberCheckId.me?id=" + id + "&isDuplicate=" + isDuplicate);
+		forward.setPath("MemberCheckId.me?mem_id=" + id + "&isDuplicate=" + isDuplicate);
 		forward.setRedirect(true);
 		return forward;
 	}

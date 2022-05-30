@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.BestProductAction;
 import action.NewProductAction;
-import action.StoreProductAction;
+import action.ProductCartAction;
+import action.ProductDetailAction;
+import action.ProductListAction;
 import vo.ActionForward;
 
 @WebServlet("*.st")
@@ -37,7 +39,7 @@ public class FrontController_st extends HttpServlet {
     	 */
     	if(command.equals("/storeMain.st")) {
 
-    		action = new StoreProductAction();
+    		action = new ProductListAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -62,12 +64,27 @@ public class FrontController_st extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-    	} else if(command.equals("/eventProduct.st")) {
+    	} else if(command.equals("/productDetail.st")) {
 
+    		action = new ProductDetailAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     		
-    	}
-    	
-    	
+    	} else if(command.equals("/productCart.st")) {
+
+    		action = new ProductCartAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    		
+    	} 
     	
     	
     	//forward에서 isRedirect가 true -> redirect, false -> dispatcher

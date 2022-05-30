@@ -18,6 +18,7 @@ public class MemberjoinService {
 		MemberDAO memberDAO = MemberDAO.getInstance();
 		memberDAO.setConnection(con);
 		
+		System.out.println(memberDTO);
 		insertMember = memberDAO.insertMember(memberDTO);
 		
 		if(insertMember > 0) {

@@ -5,32 +5,49 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://kit.fontawesome.com/9a9e4a4c63.js" crossorigin="anonymous"></script>
-<script src="js/joinFunc.js"></script>
-<script src="../js/jquery-3.6.0.js"></script>
+<link href="./css/login.css" rel="stylesheet" type="text/css">
+<script src="./js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./js/login.js"></script>
 </head>
 <body>
-	<h1>로그인</h1>
+	<section class="login-form">
+	<h1>LOGIN</h1>
 	<form action="login_pro.me" method="post">
-		<table>
-			<tr>
-				<td>아이디</td>
-				<td><input type="text" name="mem_id" required="required" size="20"></td>
-			</tr>
-			<tr>
-				<td>패스워드</td>									<!-- 눈모양 아이콘 추가 -->
-				<td><input type="password" name="mem_password" required="required" size="20">
-				<i class="fa-solid fa-eye"></i>
-				<span>(아이콘 클릭시 비밀번호 확인가능)</span>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="submit" value="로그인">
-					<input type="button" value="회원가입" onclick="location.href='join_form.me'">
-				</td>
-			</tr>
-		</table>
+		<div class="int-area">
+			<input type="text" name="mem_id" id="id" autocomplete="off" required="required">
+			<label for="id">USER NAME</label>
+		</div>
+		<div class="int-area">
+			<input type="password" name="mem_password" id="passwd" autocomplete="off" required="required">
+			<label for="passwd">PASSWORD</label>
+		</div>
+		<div class="btn-area">
+			<button type="submit" id="btn">LOGIN</button>
+		</div>
 	</form>
+	<div class="caption">
+			<a href="">Sign Up?</a>&nbsp;&nbsp;&nbsp;
+			<a href="">Forgot Password?</a>
+	</div>
+<!-- 	<div class="caption"> -->
+<!-- 			<a href="">회원</a> -->
+<!-- 	</div> -->
+	</section>
 </body>
 </html>
+<!-- 		<table> -->
+<!-- 			<tr> -->
+<!-- 				<td>아이디</td> -->
+<!-- 				<td><input type="text" name="id" required="required" size="20"></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td>패스워드</td> -->
+<!-- 				<td><input type="text" name="passwd" required="required" size="20"></td> -->
+<!-- 			</tr> -->
+<!-- 			<tr> -->
+<!-- 				<td colspan="2" align="center"> -->
+<!-- 					<input type="submit" value="로그인"> -->
+<!-- 					<input type="button" value="회원가입" onclick="location.href='MemberJoinForm.me'"> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
+<!-- 		</table> -->
