@@ -16,8 +16,8 @@ html, body {
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="../js/joinFunc.js"></script>
-<script src="../js/jquery-3.6.0.js"></script>
+<script src="js/joinFunc.js"></script>
+<script src="js/jquery-3.6.0.js"></script>
 </head>
 <body>
 <jsp:include page="../inc/header.jsp"/>
@@ -25,7 +25,7 @@ html, body {
 	<div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-8 text-center center-block">
 			<div class="card">
-          		<form class="form-card" action="payment.pm">
+          		<form class="form-card" action="payment.pm" method="post">
           		   <h3>구독상품 선택</h3>
           		   <div class="row justify-content-between text-left">
           		   		<div class="form-group col-sm-6 flex-column d-flex">
