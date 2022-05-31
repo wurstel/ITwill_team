@@ -1,23 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
+<script src="./js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./js/store.js"></script>
+<link href="./css/subpage.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 </head>
 <body>
-	<h1>store 페이지</h1>
-<!-- 	AJAX 이용한 페이지 갱신없이 내용변경 -->
-	<a href="./storeMain.st">전체상품</a>
-	<a href="./newProduct.st">신상품</a>
-	<a href="./bestProduct.st">베스트</a>
-	<a href="./eventProduct.st">이벤트</a><br>
-	<select>
-		<option>최신순</option>
-		<option>구매순</option>
-		<option>평점순</option>
-	</select>
 	
+	<div id ="resultArea">
+		<jsp:include page="./storeList.jsp"></jsp:include>
+	</div>
 </body>
 </html>

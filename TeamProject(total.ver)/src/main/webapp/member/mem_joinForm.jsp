@@ -1,62 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://kit.fontawesome.com/9a9e4a4c63.js" crossorigin="anonymous"></script>
+<link href="./css/join.css" rel="stylesheet" type="text/css">
+<script src="./js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="./js/joinFunc.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="js/joinFunc.js"></script>
-<script src="/js/jquery-3.6.0.js"></script>
+
 </head>
 <body>
-	<form action="mem_join.me" name="fr" id="fr" method="post">
-		<table border="1">
-			<tr>
-				<td>아이디</td>
-				<td>
-					<input type="text" name="id" id="id" readonly placeholder="중복확인체크">
-					<input type="button" value="ID중복확인" onclick="checkDuplicateId()">				<!-- 아이디 중복방지 -->
-					<span id="checkIdResult"></span>
-				</td>
-
-			</tr>										
-			<tr><td>비밀번호</td>
-				<td>
-					<div class="main">
-						<input type="password" name="pass" id="pass" onkeyup="checkPass(this.value)">
-						<i class="fa-solid fa-eye"></i>
-						<span>(아이콘 클릭시 비밀번호 확인가능)</span>
-					</div>
-					<span id="passResult"></span>
-				</td>
-			</tr>
-			<tr><td>이름</td>		<td><input type="text" name="name" id="name"></td></tr>
-			<tr><td>생년월일</td>	<td><input type="date" name="birth" id="birth"></td></tr>
-			<tr><td>성별</td>		<td><input type="radio" value="남" name="gender" id="gender">남<input type="radio" value="여" name="gender" id="gender">여</td></tr>
-			<tr><td>이메일</td>	<td><input type="text" name="email" id="email">@<input type="text" name="domain" id="domain"></td>			<!-- 데이터 넘길떄 합쳐서 -->
-			<td>
-				<select  name="sDomain" id="sDomain">
+	<section class="join-form">
+	<h1>JOIN</h1>
+	
+	<form action="mem_join.me" name ="fr">
+		<div class="int-area">
+			<input type="text" name="mem_id" id="id" autocomplete="off" required="required" readonly>
+			<label for="id">아이디(필수)</label>	<!-- 아이디 중복방지 -->	
+			<input type="button" value="아이디 중복 확인" class="dup" id="btn" onclick="checkDuplicateId()"><br>				
+		</div>
+		<div class="int-area">
+			<input type="password" name="mem_password" id="passwd" autocomplete="off" required="required"  onkeyup="checkPass(this.value)">
+<!-- 			<label for="email_input">필수정보입니다!</label> -->
+			<label for="id">비밀번호(필수)</label>	<!-- 정규표현식 -->					
+		</div>
+		<span id="passResult" class="passResult"></span>
+		
+		<div class="int-area">
+			<input type="password" name="mem_password2" id="passwd2" autocomplete="off" required="required"  onkeyup="checkRetypePass(this.value)">
+<!-- 			<label for="email_input">필수정보입니다!</label> -->
+			<label for="id">비밀번호 재확인(필수)</label>	<!-- 정규표현식 -->					
+		</div>
+		<span id="checkRetypePassResult" class="checkRetypePassResult"></span>
+		
+		<div class="int-area">
+			<input type="text" name="mem_name" id="name" autocomplete="off" required="required">
+			<label for="id">이름(필수)</label>					
+		</div>
+		
+		<div class="date">
+			<input type="text" name="mem_year" id="year" autocomplete="off"  placeholder="년(4자)">&nbsp;&nbsp;
+			<select onselect="" id="selectMon" name="mem_month">
+					<option value="">월</option>
+					<option value="01">01</option>
+					<option value="02">02</option>
+					<option value="03">03</option>
+					<option value="04">04</option>
+					<option value="05">05</option>
+					<option value="06">06</option>
+					<option value="07">07</option>
+					<option value="08">08</option>
+					<option value="09">09</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+			</select> &nbsp;&nbsp;
+			<input type="text" name="mem_day" id="day" autocomplete="off"  placeholder="일">
+<!-- 			<label for="id">생년월일</label>				 -->
+		</div>
+		
+		<div class="int-area">
+<!-- 			<input type="radio" value="남" name="mem_gender" id="gender">남 -->
+<!-- 			<input type="radio" value="여" name="mem_gender" id="gender">여 -->
+			<select id="selectGender" name="mem_gender">
+				<option value="">선택안함</option>
+				<option value="남">남</option>
+				<option value="여">여</option>
+			</select>
+<!-- 			<label for="id">성별</label>					 -->
+		</div>
+		
+		<div class="int-area">
+			<input type="text" name="mem_email" id="email">@<input type="text" name="domain" id="domain"  >&nbsp;
+<!-- 			<label for="id">이메일</label>					 -->
+			<select id="sDomain" onchange="selectDomain(this.value)">
 					<option value="">선택하세요</option>
 					<option value="naver.com">naver.com</option>
 					<option value="gmail.com">gmail.com</option>
 					<option value="nate.com">nate.com</option>
-					<option value="daum.net">daum.net</option>
-					<option value="msn.com">msn.com</option>
-					<option value="outlook.com">outlook.com</option>
-				</select>
-			</td>
-			</tr>
-			<tr><td>전화번호</td>	<td><input type="text" name="phone" id="phone" onblur="checkPhone(this.value)"></td></tr>				<!-- 0101xxxxxxxx 이런시고 넘어가게 -->
-			<tr><td rowspan="2">주소</td>	<td><input type="text" name="postcode" id="postcode"><input type="button" value="주소검색" onclick="postCodeSearch()"></td></tr>
-			<tr><td><input type="text" name="address" id="address"><input type="text" name="add_detail" id="add_detail" placeholder="상세주소 입력"></td></tr>
-		</table>
-		<input type="submit" value="회원가입">
-<%-- 		<c:if test="">				<!--chaptcha 미입력시 --> --%>
-<!-- 			<input type="submit" value="회원가입" disabled="disabled"> -->
-<%-- 		</c:if> --%>
+			</select>
+		</div>
+		<div class="int-area">
+			<input type="button" value="메일 인증" class="mail_btn" id="mail_btn">				
+<!-- 			<input type="text" name="mem_auth" id="auth" autocomplete="off" required="required"> -->
+<!-- 			<label for="id">메일 인증</label>	아이디 중복방지	 -->
+		</div>
+		
+		<div class="phone">
+			<select id="selectPhoneCode" name="mem_phoneNum">
+				<option value="010">010</option>
+				<option value="011">011</option>
+				<option value="016">016</option>
+			</select>-
+			<input type="text" name="mem_phoneNum1" id="phone1" autocomplete="off">-
+			<input type="text" name="mem_phoneNum2" id="phone2" autocomplete="off" >
+<!-- 			<label for="id">전화번호</label>						 -->
+		</div>
+		
+		<div class="int-area">
+			<input type="text" name="mem_postcode" id="postcode" autocomplete="off">
+			<input type="button" value="주소검색" id="postcode_se" onclick="postCodeSearch()">
+			<input type="text" id="address" name="address"><input type="text" id="add_detail" name="add_detail" placeholder="상세주소 입력">
+<!-- 			<label for="id">주소</label>					 -->
+		</div>
+		
+		<div class="btn-area" >
+			<button type="submit" id="btn">회원가입</button>
+		</div>
 	</form>
+	
+	</section>
 </body>
 </html>

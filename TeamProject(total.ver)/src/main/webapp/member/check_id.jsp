@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	window.onload = function() { 
-		<%if(request.getParameter("id") != null) {%>
-			let id = "<%=request.getParameter("id")%>";
+		<%if(request.getParameter("mem_id") != null) {%>
+			let id = "<%=request.getParameter("mem_id")%>";
 			document.fr.id.value = id;
 			let isDuplicate = "<%=request.getParameter("isDuplicate")%>";
 			
@@ -34,7 +34,7 @@
 		let id = document.fr.id.value;
 		
 		if(id.length >= 4 && id.length <= 8) { // 아이디 규칙이 적합할 경우
-			location.href = "CheckIdDuplicate.me?id=" + id; 
+			location.href = "CheckIdDuplicate.me?mem_id=" + id; 
 		} else { // 아이디 규칙이 적합하지 않을 경우
 			alert("4~8글자만 사용 가능합니다.");
 			document.getElementById("checkIdResult").innerHTML = "";
@@ -47,7 +47,7 @@
 <body>
 	<h1>ID 중복 체크</h1>
 	<form action="" name="fr">
-		<input type="text" name="id" placeholder="4 ~ 8글자 문자, 숫자 조합 필수!">
+		<input type="text" name="id" id="id" placeholder="4 ~ 8글자 문자, 숫자 조합 필수!">
 		<input type="button" value="중복확인" onclick="checkId()"><br>
 		<div id="checkIdResult"></div>
 	</form>

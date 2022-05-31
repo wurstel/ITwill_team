@@ -14,18 +14,20 @@ public class MemberJoinAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberJoinAction.java");
-		ActionForward forward = null;
 		request.setCharacterEncoding("UTF-8");
-		String birth =  request.getParameter("birth").replace("-", "");
+		ActionForward forward = null;
+		String birth = request.getParameter("mem_year") + request.getParameter("mem_month") + request.getParameter("mem_day");
+		String phone = request.getParameter("mem_phoneNum") + request.getParameter("mem_phoneNum1") + request.getParameter("mem_phoneNum2");
+		System.out.println(birth + " 와 " + phone);
 		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setMem_id(request.getParameter("id"));
-		memberDTO.setMem_password(request.getParameter("pass"));
-		memberDTO.setMem_name(request.getParameter("name"));
+		memberDTO.setMem_id(request.getParameter("mem_id"));
+		memberDTO.setMem_password(request.getParameter("mem_password"));
+		memberDTO.setMem_name(request.getParameter("mem_name"));
 		memberDTO.setMem_birth(birth);
-		memberDTO.setMem_gender(request.getParameter("gender"));
-		memberDTO.setMem_email(request.getParameter("email")+"@"+request.getParameter("domain"));
-		memberDTO.setMem_phoneNum(request.getParameter("phone"));
-		memberDTO.setMem_postcode(request.getParameter("postcode"));
+		memberDTO.setMem_gender(request.getParameter("mem_gender"));
+		memberDTO.setMem_email(request.getParameter("mem_email")+"@"+request.getParameter("domain"));
+		memberDTO.setMem_phoneNum(phone);
+		memberDTO.setMem_postcode(request.getParameter("mem_postcode"));
 		memberDTO.setMem_address(request.getParameter("address")+request.getParameter("add_detail"));
 		
 		MemberjoinService service = new MemberjoinService();
