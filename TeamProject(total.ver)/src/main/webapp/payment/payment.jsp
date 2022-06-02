@@ -19,7 +19,7 @@ html, body {
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script type="text/javascript">
-	IMP.init("imp74403648"); // https://admin.iamport.kr/settings#tab_profile 가맹점 식별코드
+	IMP.init("imp05633369"); // https://admin.iamport.kr/settings#tab_profile 가맹점 식별코드
 	
 	function kakaoPay() {
 	  

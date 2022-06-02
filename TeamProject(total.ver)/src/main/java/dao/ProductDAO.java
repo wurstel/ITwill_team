@@ -265,7 +265,97 @@ public class ProductDAO {
 			return article;
 		}
 
-		
+		public int selectSearchListCount(String search) {
+			int listCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				String sql = "SELECT COUNT(pd_code) FROM product WHERE pd_name LIKE ?";
+				pstmt = con.prepareStatement(sql);
+				// 검색어 생성을 위해서는 검색 키워드 앞뒤로 "%" 문자열 결합 필요
+				pstmt.setString(1, "%" + search + "%");
+				rs = pstmt.executeQuery();
+				
+				// 조회된 결과값의 첫번째 값(1번 인덱스)을 listCount 변수에 저장
+				if(rs.next()) {
+					listCount = rs.getInt(1);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("SQL 구문 오류 - selectListCount()");
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+			
+			return listCount;
+		}
+
+		public ArrayList<ProductDTO> selectSearchProductList(int pageNum, int listLimit, String search) {
+			ArrayList<ProductDTO> productList = null;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			try {
+				
+				// 현재 페이지에서 불러올 목록(레코드)의 첫번째(시작) 행번호 계산
+				int startRow = (pageNum - 1) * listLimit;
+				
+				// 3단계. SQL 구문 작성 및 전달
+				// 검색어에 해당하는 board 테이블의 모든 레코드 조회(글번호(num) 기준으로 내림차순 정렬)
+				String sql = "SELECT * FROM product "
+						+ "WHERE pd_name LIKE ? "
+						+ "ORDER BY num DESC LIMIT ?,?";
+				// => 목록갯수는 파라미터로 전달받은 listLimit 값 사용
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, "%" + search + "%");
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, listLimit);
+				
+				// 4단계. SQL 구문 실행 및 결과 처리
+				rs = pstmt.executeQuery();
+				
+				// 전체 레코드를 저장할 ArrayList<BoardBean> 객체 생성
+				// => 주의! 반복문 시작 전에 미리 생성해야함
+				productList = new ArrayList<ProductDTO>();
+				
+				// 다음레코드가 존재할 동안 반복하면서
+				// 1개 레코드 정보를 BoardBean 객체에 저장 후
+				// 다시 BoardBean 객체를 전체 레코드 저장하는 ArrayList<BoardBean> 객체에 추가
+				while(rs.next()) {
+					// 1개 레코드를 저장할 BoardBean 객체 생성
+					ProductDTO product = new ProductDTO();
+					// BoardBean 객체에 조회된 1개 레코드 정보를 모두 저장
+					product.setPd_code(rs.getString("pd_code"));
+					product.setPd_name(rs.getString("pd_name"));
+					product.setPd_img(rs.getString("pd_img"));
+					product.setPd_price(rs.getString("pd_price"));
+					product.setPd_stock(rs.getString("pd_stock"));
+					product.setPd_detail(rs.getString("pd_detail"));
+					product.setPd_rdate(rs.getString("pd_rdate"));
+					product.setPd_state(rs.getString("pd_state"));
+					product.setPd_sales(rs.getString("pd_sales"));
+					product.setPd_re_avg(rs.getString("pd_re_avg"));
+					
+					// 전체 레코드를 저장하는 ArrayList 객체에 1개 레코드가 저장된 BoardBean 객체 추가
+					productList.add(product);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				System.out.println("SQL 구문 오류 - selectBoardList()");
+			} finally {
+				close(rs);
+				close(pstmt);
+			}
+//			System.out.println(productList);
+			return productList;
+		}
+
 		//상품등록
 		public int insertProduct(ProductDTO productDTO) {
 			System.out.println("ProductDAO - insertProduct()");
@@ -304,7 +394,6 @@ public class ProductDAO {
 			// INSERT 작업 결과 리턴
 			return insertCount;
 		}
-
 
 
 }

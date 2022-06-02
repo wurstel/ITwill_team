@@ -94,6 +94,7 @@
 										<span class="badge bg-dark">new</span>
 									</c:if>
 									<span class="badge bg-dark">best</span>
+									<span class="badge bg-dark">정보3</span>
 								</p>
 								<p class="card-text pb-3">
 									배송비 2,500원 | 도서산간(제주도) 배송비 추가 5,000원 | 택배배송 | 5일 이내 출고 (주말,공휴일 제외)
@@ -178,9 +179,9 @@
 					      		</div>
 						      	<div class="modal-body">
 					      	  		<img src="${articleDetail.getPd_img() }" id="image">
-					      	  		<div id="na">상품코드&nbsp;:</div>
+					      	  		<div id="na">상품코드 :</div>
 					          		<div id="cr">${articleDetail.getPd_code() }</div>
-					      	  		<div id="na">상품명&nbsp;&nbsp;&nbsp;&nbsp;:</div>
+					      	  		<div id="na">상품명 :</div>
 					          		<div id="cr">${articleDetail.getPd_name() }</div>
 					      		</div>
 					      		<div class="modal-footer">
@@ -193,6 +194,169 @@
 				</c:when>
 			</c:choose>
 		</form>
+
+		<div class="container">
+			<div class="row nav" style="margin: 100px 0 0 0">
+				<nav id="middle_nav">
+					<ul class="nav justify-content-center nav-tabs">
+						<li class="nav-item" id="about"><a class="nav-link h5"
+							aria-current="page">DETAIL</a></li>
+						<li class="nav-item" id="review"><a class="nav-link h5">REVIEW</a>
+						</li>
+						<li class="nav-item" id="qna"><a class="nav-link h5">Q&A</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+
+
+			<div class="row" style="margin: 50px 0;">
+				<h1 class="jumbotron">
+					<div class="container">
+						<h1>Hello world</h1>
+						<small>This is product page.</small>
+					</div>
+				</h1>
+			</div>
+
+			<div class="row about_product" style="text-align: center;">
+				<h1 class="page-header">상품 상세</h1>
+			</div>
+			<div class="row reviews" style="text-align: center; margin: 80px 0;">
+				<h1 class="page-header" style="margin-bottom: 50px;">Review</h1>
+
+				<!-- 			리뷰 네비게이션 -->
+				<ul class="nav justify-content-end" id="select">
+					<li class="nav-item" value="pre" id="pre"><a
+						href="javascript:pre();" class="nav-link text-muted">최신순</a></li>
+					<li class="nav-item" value="avg" id="avg"><a
+						href="javascript:avg();" class="nav-link text-muted">평점순</a></li>
+				</ul>
+
+				<input type="hidden" value="${pageInfo.getListCount() }" class="listCount"> 
+				<input type="hidden" value="${articleDetail.getPd_code()}" class="re_pd_code">
+
+				<div class="resultArea1">
+					<c:if test="${not empty articleList}">
+						<c:forEach var="review" items="${articleList }">
+							<div class="card mb-3" style="max-width: 100%;">
+								<div class="row g-0">
+									<div class="col-md-4">
+										<img src="${review.getRe_img() }"
+											style="width: 150px; height: 180px;"
+											class="img-fluid rounded-start" alt="...">
+									</div>
+									<div class="col-md-8">
+										<div class="card-body">
+											<h5 class="card-title">${review.getRe_score() }</h5>
+											<p class="card-text">
+												<small class="text-muted">${review.getRe_mem_id() }</small>
+											</p>
+											<p class="card-text">${review.getRe_title() }</p>
+											<p class="card-text">
+												<small class="text-muted">${review.getRe_comment() }</small>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</c:if>
+					</div>
+				
+				<div class="resultArea2">
+				
+				</div>
+				
+
+
+				<!-- 			<table> -->
+				<!-- 					<tr> -->
+				<!-- 						<td>번호</td> -->
+				<!-- 						<td>아이디</td> -->
+				<!-- 						<td>후기사진</td> -->
+				<!-- 						<td>제목</td> -->
+				<!-- 						<td>내용</td> -->
+				<!-- 						<td>평점</td> -->
+				<!-- 					</tr> -->
+				<%-- 					<c:if test="${not empty articleList}"> --%>
+				<%-- 						<c:forEach var="review" items="${articleList }"> --%>
+				<!-- 							<tr> -->
+				<%-- 								<td>${review.getRe_num() }</td> --%>
+				<%-- 								<td>${review.getRe_mem_id() }</td> --%>
+				<%-- 								<td><img src="${review.getRe_img() }" alt="..."></td> --%>
+				<%-- 								<td>${review.getRe_title() }</td> --%>
+				<%-- 								<td>${review.getRe_comment() }</td> --%>
+				<%-- 								<td>${review.getRe_score() }</td> --%>
+
+				<!-- 							</tr> -->
+				<%-- 						</c:forEach> --%>
+				<%-- 					</c:if> --%>
+
+
+				<!-- 				</table> -->
+				<c:set var="pageNum" value="${pageInfo.getPageNum() }" />
+				<c:set var="maxPage" value="${pageInfo.getMaxPage() }" />
+				<c:set var="startPage" value="${pageInfo.getStartPage() }" />
+				<c:set var="endPage" value="${pageInfo.getEndPage() }" />
+				<c:set var="listCount" value="${pageInfo.getListCount() }" />
+
+				<!-- 			         <section id="pageList"> -->
+				<%-- 			            <c:choose> --%>
+				<%-- 			               <c:when test="${pageNum > 1}"> --%>
+				<!-- 			                  <input type="button" value="이전" -->
+				<%-- 			                     onclick="location.href='productDetail.st?page=${pageNum - 1}&pd_code=${re_pd_code }'"> --%>
+				<%-- 			               </c:when> --%>
+				<%-- 			               <c:otherwise> --%>
+				<!-- 			                  <input type="button" value="이전"> -->
+				<%-- 			               </c:otherwise> --%>
+				<%-- 			            </c:choose> --%>
+				<%-- 			            <c:forEach var="i" begin="${startPage }" end="${endPage }"> --%>
+				<%-- 			               <c:choose> --%>
+				<%-- 			                  <c:when test="${pageNum eq i}"> --%>
+				<%-- 			                     ${i } --%>
+				<%-- 			                  </c:when> --%>
+				<%-- 			                  <c:otherwise> --%>
+				<%-- 			                     <a href="productDetail.st?page=${i }&pd_code=${re_pd_code }">${i }</a> --%>
+				<%-- 			                  </c:otherwise> --%>
+				<%-- 			               </c:choose> --%>
+				<%-- 			            </c:forEach> --%>
+				<%-- 			            <c:choose> --%>
+				<%-- 			               <c:when test="${pageNum < maxPage}"> --%>
+				<!-- 			                  <input type="button" value="다음" -->
+				<%-- 			                     onclick="location.href='productDetail.st?page=${pageNum + 1}&pd_code=${re_pd_code }'"> --%>
+				<%-- 			               </c:when> --%>
+				<%-- 			               <c:otherwise> --%>
+				<!-- 			                  <input type="button" value="다음"> -->
+				<%-- 			               </c:otherwise> --%>
+				<%-- 			            </c:choose> --%>
+				<!--        			  </section> -->
+			</div>
+
+			<div class="row qnas" style="text-align: center; margin: 80px 0;">
+				<h1 class="page-header" style="margin-bottom: 50px;">상품 Q&A</h1>
+<%-- 				           <c:forEach begin="1" end="5"> --%>
+<!-- 							<div class="panel panel-default"> -->
+<!-- 								<div class="panel-heading"> -->
+<!-- 									<h3 class="panel-title">Panel title</h3> -->
+<!-- 								</div> -->
+<!-- 								<div class="panel-body">Panel content</div> -->
+<!-- 							</div> -->
+<%-- 							</c:forEach> --%>
+				<div>
+					<jsp:include page="./instructionProduct.jsp"></jsp:include>
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
 	</main>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

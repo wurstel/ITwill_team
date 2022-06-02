@@ -25,7 +25,7 @@ html, body {
 	<div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-8 text-center center-block">
 			<div class="card">
-          		<form class="form-card" action="payment.pm" method="post">
+          		<form class="form-card" action="Payment.pm" method="post">
           		   <h3>구독상품 선택</h3>
           		   <div class="row justify-content-between text-left">
           		   		<div class="form-group col-sm-6 flex-column d-flex">
@@ -37,7 +37,7 @@ html, body {
           		   		</div>	
           		   		<div class="form-group col-sm-6 flex-column d-flex">	
           		   			<label class="form-control-label px-3">수량선택</label>
-          		   			<select name="sub_type" id="sub_type">
+          		   			<select name="sub_qty" id="sub_qty">
           		   				<option value="1">1</option>
           		   				<option value="2">2</option>
           		   				<option value="3">3</option>
@@ -56,7 +56,7 @@ html, body {
                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger"> &nbsp;</span></label><input type="button" value="주소 검색" onclick="postCodeSearch()"></div>
                    </div>
                    <div class="row justify-content-between text-left">
-                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">주소<span class="text-danger"> *</span></label> <input type="text" id="address" name="address" > </div>
+                       <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">주소<span class="text-danger"> *</span></label> <input type="text" id="address" name="address" readonly> </div>
                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">상세주소<span class="text-danger"> *</span></label> <input type="text" id="address_detail" name="address_detail" placeholder="상세주소 입력" > </div>
                    </div>
                    <div class="row justify-content-between text-left">
@@ -64,7 +64,7 @@ html, body {
                    </div>
                    <div class="row justify-content-between text-left">
                        <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label px-3">배송시 요청사항<span class="text-danger"> *</span></label>
-                           <select>
+                           <select name="oredr_comment">
                                <option value="직접 수령 부재시 문 앞">직접 수령 부재시 문 앞</option>
                                <option value="문 앞">문 앞</option>
                                <option value="경비실">경비실</option>

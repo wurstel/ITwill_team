@@ -17,6 +17,48 @@ $(function() {
 	});
 });
 
+// a 태그를 이용한 리뷰 정렬
+$(function() {
+	$("#select li a").on("click", function() {
+		//		 var result = $("li").val();
+		var result = $(this).text();
+		var re_pd_code = $(".re_pd_code").val();
+
+		$(".resultArea1").hide();
+		$(".resultArea2").show();
+
+		if (result == "최신순") {
+			$.ajax({
+				type: "GET",
+				url: "./productReviewList.st",
+				data: {
+					re_pd_code: re_pd_code,
+					select: result,
+				},
+				dataType: "text",
+				success: function(msg) {
+					$(".resultArea2").html(msg);
+				}
+			});
+		} else if (result == "평점순") {
+			$.ajax({
+				type: "GET",
+				url: "./productReviewList.st",
+				data: {
+					re_pd_code: re_pd_code,
+					select: result,
+				},
+				dataType: "text",
+				success: function(msg) {
+					$(".resultArea2").html(msg);
+				}
+			});
+		}
+
+
+	});
+});
+
 // 상품 수량 및 상품 총 가격
 function add () {
     var sell_price = document.fr.sell_price;
@@ -98,5 +140,26 @@ function cartChoice(target) {
 //    }	
 //});
 	    
+		
+// 상세 정보
+$(document).ready(function(){
+	$("#review").click(function() {
+		
+		var scrollPosition = $(".reviews").offset().top;
+		$("html").animate({scrollTop: scrollPosition}, 500); 
+	});
+	
+	$("#qna").click(function() {
+	
+		var scrollPosition = $(".qnas").offset().top;
+		$("html").animate({scrollTop: scrollPosition}, 500); 
+	});
+	
+	$("#about").click(function() {
+		
+		var scrollPosition = $(".about_product").offset().top;
+		$("html").animate({scrollTop: scrollPosition}, 500); 
+	});
+});		
 		
 		

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.PaymentAction;
 import vo.ActionForward;
 
 @WebServlet("*.pm")
@@ -31,14 +32,15 @@ public class Frontcontroller_pm extends HttpServlet {
     	 * .ad : admin
     	 * .pm : payment
     	 */
-    	if(command.equals("/payment.pm")) {
-    		forward = new ActionForward();
-    		forward.setPath("payment/payment.jsp");
-    		forward.setRedirect(false);
+    	if(command.equals("/Payment.pm")) {
+    		action = new PaymentAction();
+    		try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
     	}
     		
-    	
-    	
     	//forward에서 isRedirect가 true -> redirect, false -> dispatcher
     	if(forward != null) {
     		if(forward.isRedirect()) {

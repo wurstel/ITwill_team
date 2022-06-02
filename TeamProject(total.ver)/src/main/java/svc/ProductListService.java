@@ -121,4 +121,48 @@ public class ProductListService {
 		
 		return articleList;
 	}
+
+	public int selectSearchListCount(String search) {
+		System.out.println("ProductListService - selectSearchListCount");
+		int listCount = 0;
+		
+		// Connection 객체 가져오기 - 공통
+		Connection con = getConnection();
+				
+		// BoardDAO 객체 가져오기 - 공통
+		ProductDAO productDAO = ProductDAO.getInstance();
+				
+		// BoardDAO 객체에 Connection 객체 전달하기 - 공통
+		productDAO.setConnection(con);
+				
+		// BoardDAO 객체의 selectArticleList 메서드를 호출하여 총 게시물 수 조회
+		listCount = productDAO.selectSearchListCount(search);
+		
+		// Connection 객체 반환 - 공통
+		close(con);
+		
+		return listCount;
+	}
+
+	public ArrayList<ProductDTO> selectSearchProductList(int pageNum, int listLimit, String search) {
+		System.out.println("ProductListService - selectSearchProductList");
+		ArrayList<ProductDTO> productList = null;
+		
+		// Connection 객체 가져오기 - 공통
+		Connection con = getConnection();
+				
+		// BoardDAO 객체 가져오기 - 공통
+		ProductDAO productDAO = ProductDAO.getInstance();
+				
+		// BoardDAO 객체에 Connection 객체 전달하기 - 공통
+		productDAO.setConnection(con);
+				
+		// BoardDAO 객체의 selectArticleList 메서드를 호출하여 총 게시물 수 조회
+		productList = productDAO.selectSearchProductList(pageNum, listLimit, search);
+		
+		// Connection 객체 반환 - 공통
+		close(con);
+		
+		return productList;
+	}
 }

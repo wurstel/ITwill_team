@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@ body {
 </head>
 <body>
 	<jsp:include page="../../inc/header.jsp"/>  <!-- 헤더 들어가는 곳 -->
-	
+	<c:set var="pd_code" value="st"></c:set>
 	<div style="background: url(assets/standardPage.jpg)" class="jumbotron bg-cover text-white">
     <div class="container py-5 text-center">
         <h1 class="display-4 font-weight-bold">스탠다드 구독</h1>
@@ -27,8 +28,7 @@ body {
 <!--             <a href="https://bootstrapious.com" class="text-white"> -->
 <!--                 <u>Bootstrapious</u> -->
 <!--             </a> -->
-        </p>
-        <a href="sub_order.sub" role="button" class="btn btn-primary px-5">구독하기</a>
+        <a href="sub_order.sub?pd_code=${pd_code} " role="button" class="btn btn-primary px-5">구독하기</a>
     </div>
 </div>
 

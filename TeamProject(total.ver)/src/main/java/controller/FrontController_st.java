@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import javax.swing.Action;
 import action.Action;
-import action.BestProductAction;
-import action.NewProductAction;
+import action.ProductBestAction;
+import action.ProductNewAction;
+import action.ProductReviewListAction;
+import action.ProductSearchAction;
 import action.ProductCartAction;
 import action.ProductDetailAction;
 import action.ProductListAction;
@@ -48,7 +50,7 @@ public class FrontController_st extends HttpServlet {
 			}
     	} else if(command.equals("/newProduct.st")) {
 
-    		action = new NewProductAction();
+    		action = new ProductNewAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -57,7 +59,7 @@ public class FrontController_st extends HttpServlet {
 			}
     	} else if(command.equals("/bestProduct.st")) {
 
-    		action = new BestProductAction();
+    		action = new ProductBestAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -84,8 +86,27 @@ public class FrontController_st extends HttpServlet {
 				e.printStackTrace();
 			}
     		
-    	} 
-    	
+    	} else if(command.equals("/storeSearch.st")) {
+    		// 상품 검색
+    		action = new ProductSearchAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    		
+    	} else if(command.equals("/productReviewList.st")) {
+
+    		action = new ProductReviewListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+    		
+    	}
     	
     	//forward에서 isRedirect가 true -> redirect, false -> dispatcher
     	if(forward != null) {
@@ -97,11 +118,6 @@ public class FrontController_st extends HttpServlet {
     		}
     	}
     	
-    	
-    	
-    	
-    	
-    
     
     }
     
