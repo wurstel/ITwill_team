@@ -30,9 +30,9 @@ html, body {
           		   <div class="row justify-content-between text-left">
           		   		<div class="form-group col-sm-6 flex-column d-flex">
           		   			<label class="form-control-label px-3">상품선택</label>
-          		   			<select name="sub_type" id="sub_type">
-          		   				<option value="standard">스탠다드</option>
-          		   				<option value="premium">프리미엄</option>
+          		   			<select name="pd_code" id="pd_code">
+          		   				<option value="st">스탠다드</option>
+          		   				<option value="pre">프리미엄</option>
           		   			</select>
           		   		</div>	
           		   		<div class="form-group col-sm-6 flex-column d-flex">	

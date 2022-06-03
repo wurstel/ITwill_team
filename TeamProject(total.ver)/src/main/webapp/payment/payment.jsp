@@ -28,13 +28,13 @@ html, body {
         pg: 'kakaopay', // 결제할 pg사 간편결제 카카오페이 테스트모드 ON 가맹점코드 일반결제용
         pay_method: 'card',
         merchant_uid: 'merchant_'+new Date().getTime(), // 주문번호
-        name: '파댕이', // 상품명
-        amount: 100, // 가격
-        buyer_email: 'lhj6346@gmail.com',
-        buyer_name: '이현진',
-        buyer_tel: '010-5771-6061',
-        buyer_addr: '부산시 강서구',
-        buyer_postcode: '46723'
+        name: '${payInfoDTO.pd_name}', // 상품명
+        amount: ${payInfoDTO.amount}, // 가격
+        buyer_email: '${payInfoDTO.mem_email}',
+        buyer_name: '${payInfoDTO.mem_name}',
+        buyer_tel: '${payInfoDTO.mem_phoneNum}',
+        buyer_addr: '${payInfoDTO.order_address}',
+        buyer_postcode: '${payInfoDTO.order_postcode}'
     }, function (rsp) { // callback
     	console.log(rsp);
         if (rsp.success) {
@@ -63,13 +63,13 @@ html, body {
 	        // apikey sk_test_w5lNQylNqa5lNQe013Nq
 	        pay_method: 'card',
 	        merchant_uid: 'merchant_'+new Date().getTime(), // 주문번호
-	        name: '파댕이', // 상품명
-	        amount: 100, // 가격
-	        buyer_email: 'lhj6346@gmail.com',
-	        buyer_name: '이현진',
-	        buyer_tel: '010-5771-6061',
-	        buyer_addr: '부산시 강서구',
-	        buyer_postcode: '46723'
+	        name: '${payInfoDTO.pd_name}', // 상품명
+	        amount: ${payInfoDTO.amount}, // 가격
+	        buyer_email: '${payInfoDTO.mem_email}',
+	        buyer_name: '${payInfoDTO.mem_name}',
+	        buyer_tel: '${payInfoDTO.mem_phoneNum}',
+	        buyer_addr: '${payInfoDTO.order_address}',
+	        buyer_postcode: '${payInfoDTO.order_postcode}'
 	    }, function (rsp) { // callback
 	    	console.log(rsp);
 	        if (rsp.success) {
@@ -96,13 +96,13 @@ html, body {
 	        pg: 'html5_inicis', // 결제할 pg사
 	        pay_method: 'card',
 	        merchant_uid: 'merchant_'+new Date().getTime(), // 주문번호
-	        name: '파댕이', // 상품명
-	        amount: 100, // 가격
-	        buyer_email: 'lhj6346@gmail.com',
-	        buyer_name: '이현진',
-	        buyer_tel: '010-5771-6061',
-	        buyer_addr: '부산시 강서구',
-	        buyer_postcode: '46723'
+	        name: '${payInfoDTO.pd_name}', // 상품명
+	        amount: ${payInfoDTO.amount}, // 가격
+	        buyer_email: '${payInfoDTO.mem_email}',
+	        buyer_name: '${payInfoDTO.mem_name}',
+	        buyer_tel: '${payInfoDTO.mem_phoneNum}',
+	        buyer_addr: '${payInfoDTO.order_address}',
+	        buyer_postcode: '${payInfoDTO.order_postcode}'
 	    }, function (rsp) { // callback
 	    	console.log(rsp);
 	        if (rsp.success) {

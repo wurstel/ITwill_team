@@ -94,7 +94,7 @@ public class ProductListAction implements Action {
 		request.setAttribute("articleList", articleList); // 게시물 목록 객체
 		request.setAttribute("select", select);
 		forward = new ActionForward();
-		forward.setPath("./store/store.jsp");
+		forward.setPath("./admin/product_list.jsp");
 		forward.setRedirect(false); 
 		
 		return forward;
